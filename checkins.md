@@ -1,19 +1,21 @@
-## Week 1 Summary (09/21/2025)
+# Week 1 Summary (09/21/2025)
 
-### This week I worked on:
+## This week I worked on
 
-[Your answer here]
+- Setting up my Flutter Environment in Visual Studio Code
+- Getting familiar with the Dart language
+- Brainstorming ideas for what to include in my app
 
-### This week I learned:
+## This week I learned
 
-[Your answer here]
+- Dart, Dart, AND MORE DART
 
-### My successes this week were:
+## My successes this week were
 
-[Your answer here]
+- Getting to a comfortable starting point where I am not worried about issues building the app
 
-### The challenges I faced this week were:
+## The challenges I faced this week were
 
-[Your answer here]
+- Trying to familiarize myself with a new technology and programming language as fast as possible to make sure I have as much programming time as possible
 
 ---
