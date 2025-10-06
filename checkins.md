@@ -19,3 +19,41 @@
 - Trying to familiarize myself with a new technology and programming language as fast as possible to make sure I have as much programming time as possible
 
 ---
+
+# Week 2 Summary (09/28/2025)
+
+## This week I worked on
+
+- Learning more about Dart
+
+## This week I learned
+
+- Dart
+
+## My successes this week were
+
+- Continuing to familiarize myself with Flutter/Dart
+
+## The challenges I faced this week were
+
+- I did not get as much work done as I know I should have, I had a lot going on so I'll make up for it next week.
+
+---
+
+# Week 3 Summary (10/05/2025)
+
+## This week I worked on
+
+- 
+
+## This week I learned
+
+- 
+
+## My successes this week were
+
+- 
+
+## The challenges I faced this week were
+
+- 
