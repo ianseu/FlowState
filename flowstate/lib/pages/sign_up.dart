@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'sign_up.dart';
+import 'login.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Sign Up'),
       ),
 
       body: Padding(
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            
+
             TextField(
               decoration: const InputDecoration(
                 labelText: 'Password',
@@ -31,18 +31,26 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
             ),
 
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Confirm Password',
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
+            ),
+
             ElevatedButton(
               onPressed: () {
-                //Will login a user if they exist in the system and their credentials are correct.
+                //Will sign up a user if they are not already in the system and the user does not not exist
               },
-              child: const Text('Login'),
+              child: const Text('Sign Up'),
             ),
 
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              child: const Text('Don\'t have an account? Sign Up'),
+              child: const Text('Already have an account? Login'),
             ),
           ],
         ),
