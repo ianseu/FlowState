@@ -66,15 +66,11 @@
 
 ## This week I worked on
 
-
 ## This week I learned
-
 
 
 ## My successes this week were
 
 
-
 ## The challenges I faced this week were
-
 

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'sign_up.dart';
 
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         title: Text('Login'),
       ),
@@ -15,15 +17,18 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
             TextField(
               decoration: InputDecoration(
-                labelText: 'Username',
-                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person),
+                labelText: 'Email',
+                border: OutlineInputBorder(),            
               ),
             ),
             
             TextField(
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.lock),
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
