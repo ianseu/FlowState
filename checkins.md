@@ -44,16 +44,37 @@
 
 ## This week I worked on
 
-- 
+- Created the App Spec (README.md)
+- Created the App Icon Logic
+- Created the UI for Signing Up and Logging In
 
 ## This week I learned
 
-- 
+- More about the various widgets in Dart
 
 ## My successes this week were
 
-- 
+- Starting the development process
 
 ## The challenges I faced this week were
 
-- 
+- Dart is very easy to understand but hard to master, learning how all the widgets and what the attributes do reminds me of learning HTML/CSS and getting used to it is very hard.
+
+---
+
+# Week 4 Summary (10/12/2025)
+
+## This week I worked on
+
+
+## This week I learned
+
+
+
+## My successes this week were
+
+
+
+## The challenges I faced this week were
+
+

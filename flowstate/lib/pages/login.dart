@@ -8,23 +8,22 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text('Login'),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(),
               ),
             ),
             
             TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
@@ -35,14 +34,16 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 //Will login a user if they exist in the system and their credentials are correct.
               },
-              child: const Text('Login'),
+              child: Text('Login'),
             ),
+
+            Text('Don\'t have an account?'),
 
             TextButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
               },
-              child: const Text('Don\'t have an account? Sign Up'),
+              child: Text('Sign Up'),
             ),
           ],
         ),
