@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'sign_up.dart';
 
-
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +26,20 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Login'),
       ),
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
             TextField(
+              controller: _usernameController,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
-                labelText: 'Email',
-                border: OutlineInputBorder(),            
+                labelText: 'Username',
+                border: OutlineInputBorder(),
               ),
             ),
-            
             TextField(
+              controller: _passwordController,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock),
                 labelText: 'Password',
@@ -34,19 +47,17 @@ class LoginPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
-
             ElevatedButton(
               onPressed: () {
-                //Will login a user if they exist in the system and their credentials are correct.
+
               },
               child: Text('Login'),
             ),
-
             Text('Don\'t have an account?'),
-
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => SignUpPage()));
               },
               child: Text('Sign Up'),
             ),

@@ -66,11 +66,38 @@
 
 ## This week I worked on
 
+- Not a lot, read about some flutter packages
+
 ## This week I learned
+
+- More about database integration with flutter
 
 
 ## My successes this week were
 
+- Not many
 
 ## The challenges I faced this week were
 
+- Getting stuff done, will get more done next week, was busy over break
+
+---
+
+# Week 5 Summary (10/19/2025)
+
+## This week I worked on
+
+- 
+
+## This week I learned
+
+- 
+
+
+## My successes this week were
+
+- 
+
+## The challenges I faced this week were
+
+- 
