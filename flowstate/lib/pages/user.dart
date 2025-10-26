@@ -1,12 +1,19 @@
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
+part 'user.g.dart'; 
+
+//Definition of a user for the Hive database box
 @HiveType(typeId: 0)
 class User extends HiveObject {
-
   @HiveField(0)
   String? username;
 
   @HiveField(1)
   String? hashedPassword;
+
+  @HiveField(2)
+  List<String>? tags;
+
+  //Make sure a user can never be added with incomplete info
+  User({required this.username, required this.hashedPassword, this.tags});
 }

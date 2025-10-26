@@ -87,7 +87,7 @@
 
 ## This week I worked on
 
-- 
+- Implemented
 
 ## This week I learned
 
