@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'pages/user.dart'; 
 import 'pages/login.dart';
 
@@ -18,7 +19,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'FlowState',
+      theme: ThemeData(
+        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
+        splashColor: Colors.transparent,  
+        highlightColor: Colors.transparent,
+        primaryColor: Color.fromRGBO(84, 125, 194, 1),
+      ),
       home: LoginPage(),
     );
   }

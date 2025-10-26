@@ -97,34 +97,115 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
+            //Logo
+            Image.asset(
+              'assets/icons/app_icon.png',
+              width: 150,
+              height: 150,
+            ),
+
+
+            Text(
+              'Welcome Back!',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(84, 125, 194, 1)
+              ),
+            ),
+            SizedBox(height: 40),
+
             //Username Input
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.person),
-                labelText: 'Username',
-                border: OutlineInputBorder(),
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: _usernameController,
+                cursorColor: Color.fromRGBO(84, 125, 194, 1),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: Color.fromRGBO(84, 125, 194, 1)),
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Color.fromRGBO(84, 125, 194, 1)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                    )
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                      width: 2.0,
+                    )
+                  ),
+                ),
+              ),
+            ),
+            
+            SizedBox(height: 10),
+
+            //Password Input
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: _passwordController,
+                cursorColor: Color.fromRGBO(84, 125, 194, 1),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock, color: Color.fromRGBO(84, 125, 194, 1)),
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Color.fromRGBO(84, 125, 194, 1)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                    )
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                      width: 2.0,
+                    )
+                  ),
+                ),
+                obscureText: true,
               ),
             ),
             SizedBox(height: 10),
 
-            //Password Input
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock),
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: 20),
-
             //Login Button
-            ElevatedButton(
-              onPressed: _login,
-              child: Text('Login'),
+            SizedBox(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(84, 125, 194, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(500.0),
+                    side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1)),
+                  ),
+                ),
+                onPressed: _login,
+                child: Text(
+                'Login',
+                style: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                ),
+              ),
             ),
+            SizedBox(height: 40),
 
             Text('Don\'t have an account?'),
             //Sign up Text Button
@@ -135,7 +216,13 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => SignUpPage()),
                 );
               },
-              child: Text('Sign Up'),
+              child: Text(
+                'Sign Up',
+                style: TextStyle(
+                  color: Color.fromRGBO(84, 125, 194, 1),
+                ),
+                  
+              ),
             ),
           ],
         ),
