@@ -87,17 +87,32 @@
 
 ## This week I worked on
 
-- Implemented
+- Login/Sign Up UI Decoration
+- App Icon
+- Created Hive NoSQL DB for signing up/logging in users
+- New pages: Home + Tags Select
 
 ## This week I learned
 
-- 
+- I'm a master procrastinator
 
 
 ## My successes this week were
 
-- 
+- Finishing the login/sign up stuff for good
 
 ## The challenges I faced this week were
 
-- 
+- Not a lot
+
+---
+
+# Week 6 Summary (10/26/2025)
+
+## This week I worked on
+
+## This week I learned
+
+## My successes this week were
+
+## The challenges I faced this week were
