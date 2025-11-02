@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:bcrypt/bcrypt.dart';
 import 'sign_up.dart';
 import 'home.dart';
-import 'user.dart';
+import 'classes/user.dart';
 
 //Login page
 class LoginPage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
   void _login() {
     final username = _usernameController.text.trim();
     final password = _passwordController.text;
-
+    
     //Empty field
     if (username.isEmpty || password.isEmpty) {
       _showAlertDialog('Error', 'All fields are required!');
@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     final user = box.get(username) as User?;
+    
 
     //Check if username exists
     if (user == null) {
@@ -63,13 +64,15 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
+    List<String>? tags = [];
+    
     //Check if password is correct
     if (BCrypt.checkpw(password, user.hashedPassword!)) { 
       _showAlertDialog('Success', 'Logged in!', 
         onOkPressed: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => Home()),
+            MaterialPageRoute(builder: (context) => Home(user: username, userTags: tags)),
           );
       },
     );

@@ -111,8 +111,36 @@
 
 ## This week I worked on
 
+- Pick Tags Page
+
 ## This week I learned
+
+- Even more flutter widgets
 
 ## My successes this week were
 
+- Getting stuff done
+
 ## The challenges I faced this week were
+
+- Not a lot
+
+---
+
+# Week 7 Summary (11/02/2025)
+
+## This week I worked on
+
+-
+
+## This week I learned
+
+-
+
+## My successes this week were
+
+-
+
+## The challenges I faced this week were
+
+-

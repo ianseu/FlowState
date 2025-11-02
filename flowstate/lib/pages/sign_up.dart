@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:bcrypt/bcrypt.dart';
 import 'login.dart';
 import 'pick_tags.dart';
-import 'user.dart';
+import 'classes/user.dart';
 
 //Sign up page
 class SignUpPage extends StatefulWidget {
@@ -86,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
       onOkPressed: () {
         Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => PickTags()),
+        MaterialPageRoute(builder: (context) => PickTags(user: username)),
       );
     },
   );

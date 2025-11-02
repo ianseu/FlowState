@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'pages/user.dart'; 
+import 'pages/classes/user.dart'; 
 import 'pages/login.dart';
 
 //Main app functionality
@@ -10,7 +10,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter(); 
   Hive.registerAdapter(UserAdapter()); 
+  // var box = 
   await Hive.openBox('Users');
+  // box.clear();
   runApp(const MyApp()); //Runs app
 }
 
