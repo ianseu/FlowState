@@ -40,15 +40,8 @@ class _PickTagsState extends State<PickTags> {
     "No Time Limit",
   ];
 
-  bool containsTag(String tag) {
-    if(selectedTags.contains(tag)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
 
+  //Reusable UI build of a group of tags
   Widget buildTagSection(String title, List<String> tags) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +49,7 @@ class _PickTagsState extends State<PickTags> {
         Text(
           title,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Color.fromRGBO(0, 0, 0, 1)
           ),
@@ -65,6 +58,7 @@ class _PickTagsState extends State<PickTags> {
           spacing: 4,
           alignment: WrapAlignment.center,
           children: [
+            //Creates a selectable chip for every tag
             for (String tag in tags)
               FilterChip(
                 showCheckmark: false,
@@ -77,12 +71,14 @@ class _PickTagsState extends State<PickTags> {
                 label: Text(
                   tag,
                   style: TextStyle(
-                    color: containsTag(tag) 
+                    color: selectedTags.contains(tag) 
+                      //? - if true
+                      //: - else
                       ? Color.fromARGB(255, 255, 255, 255)
                       : Color.fromRGBO(84, 125, 194, 1),
                   )
                   ),
-                selected: containsTag(tag),
+                selected: selectedTags.contains(tag),
                 onSelected: (bool selected) {
                   setState(() {
                     if (selected) {
@@ -99,6 +95,7 @@ class _PickTagsState extends State<PickTags> {
     );
   }
 
+  //UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,13 +127,13 @@ class _PickTagsState extends State<PickTags> {
               ),
               SizedBox(height: 40),
 
-              buildTagSection("Meditation Type", tags),
+              buildTagSection("What type of meditation appeals to you?", tags),
               SizedBox(height: 20),
 
-              buildTagSection("What Are You Struggling With?", strugglesTags),
+              buildTagSection("Are you struggling with any of the following?", strugglesTags),
               SizedBox(height: 10),
 
-              buildTagSection("Duration", durationsTags),
+              buildTagSection("How long can you put towards meditation everyday?", durationsTags),
               SizedBox(height: 80),
 
               SizedBox(

@@ -28,7 +28,7 @@
 
 ## This week I learned
 
-- Dart
+- More about Dart widgets
 
 ## My successes this week were
 
@@ -75,7 +75,7 @@
 
 ## My successes this week were
 
-- Not many
+- Not a lot, I didn't get much done
 
 ## The challenges I faced this week were
 
@@ -94,7 +94,7 @@
 
 ## This week I learned
 
-- I'm a master procrastinator
+- I'm getting much better at dart.
 
 
 ## My successes this week were
@@ -103,7 +103,7 @@
 
 ## The challenges I faced this week were
 
-- Not a lot
+- Not a lot of challenges this week
 
 ---
 
@@ -111,19 +111,19 @@
 
 ## This week I worked on
 
-- Pick Tags Page
+- Pick Tags Page and fixed issues with other pages
 
 ## This week I learned
 
-- Even more flutter widgets
+- Learned about even more flutter widgets
 
 ## My successes this week were
 
-- Getting stuff done
+- I was able to sit down for a extended period of time and feel focused and get a lot done.
 
 ## The challenges I faced this week were
 
-- Not a lot
+- Not a lot of challenges this week
 
 ---
 
