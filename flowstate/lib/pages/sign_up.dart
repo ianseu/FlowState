@@ -77,6 +77,8 @@ class _SignUpPageState extends State<SignUpPage> {
       username: username,
       hashedPassword: hashedPassword,
       tags: [], //Tags will be added later after sign up
+      streak: 1,
+      // lastLogin: ADD LATER
     );
     
     //Add user to box

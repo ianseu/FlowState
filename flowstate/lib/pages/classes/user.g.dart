@@ -20,19 +20,25 @@ class UserAdapter extends TypeAdapter<User> {
       username: fields[0] as String?,
       hashedPassword: fields[1] as String?,
       tags: (fields[2] as List?)?.cast<String>(),
+      streak: fields[3] as int?,
+      lastLogin: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.username)
       ..writeByte(1)
       ..write(obj.hashedPassword)
       ..writeByte(2)
-      ..write(obj.tags);
+      ..write(obj.tags)
+      ..writeByte(3)
+      ..write(obj.streak)
+      ..writeByte(4)
+      ..write(obj.lastLogin);
   }
 
   @override

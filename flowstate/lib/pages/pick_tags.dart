@@ -16,10 +16,17 @@ class _PickTagsState extends State<PickTags> {
 
   //Hive storage 'box'
   var box = Hive.box('Users');
+  late User currentUser;
   //List of selected tags which will be added to user's profile
   List<String> selectedTags = [];
+
+  @override
+  void initState() {
+    super.initState();
+    currentUser = box.get(widget.user);
+  }
   
-  List<String> tags = [
+  List<String> typeTags = [
     "Visual",
     "Auditory",
     "Guided",
@@ -127,7 +134,7 @@ class _PickTagsState extends State<PickTags> {
               ),
               SizedBox(height: 40),
 
-              buildTagSection("What type of meditation appeals to you?", tags),
+              buildTagSection("What type of meditation appeals to you?", typeTags),
               SizedBox(height: 20),
 
               buildTagSection("Are you struggling with any of the following?", strugglesTags),
@@ -148,10 +155,11 @@ class _PickTagsState extends State<PickTags> {
                   ),
                 ),
                 onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags)),
-                );
+                  currentUser.tags = selectedTags;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags)),
+                  );
               },
                 child: Text(
                 'Continue',
