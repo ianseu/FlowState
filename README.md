@@ -18,44 +18,31 @@ Flow State desires to have the perfect anxiety/stress combatting technique for e
 
 ### System Features
 
-1. **Secure Login**: Username:Password sign up/login system with Hive NoSQL Database + Password hashing to keep data secure.
-2. **Personalized User Experience**: Depending on user selected Tags after sign up, each user will have a unique selection of stress relief techniques based on the tags that they choose. However, all techniques are always available for users to try out.
-3. **Achievement System**: Users can start a "streak" after 3 consecutive login days in a row.
-4. **Notification System**: Users can set a daily meditation time if they choose to, and the app will notify them at the specified time everyday.
-5. **Support for Multiple Languages/App Themes**: Support for the most common languages and a Light/Dark App theme.
+1. **Secure Login**: Username login system with Hive NoSQL Database, user selects tags to personalize app.
+2. **Personalized User Experience**: Depending on user selected tags after login, each user will have a unique selection of stress relief techniques based on the tags that they choose. However, all techniques are always available for users to try out.
+3. **Various Meditation Techniques**: Users can choose from multiple different meditation techniques
+4. **Achievement System**: Users can start a "streak" after 3 consecutive login days in a row.
+5. **Notification System**: Users can set a daily meditation time if they choose to, and the app will notify them at the specified time everyday.
+6. **Support for Multiple Languages/App Themes**: Support for the most common languages and a Light/Dark App theme.
 
 ## Use Cases
-### Use Case 1.1: Sign Up
+### Use Case 1.1: Login
 - **Actors**: User
-- **Overview**: User enters information to be signed up in the system
+- **Overview**: User enters their name to access the app
   
 **Typical Course of Events**:
-1. Prompts for username, password, and confirmation password field
-2. User enters a username and a matching password in both fields
-3. System signs user up given the information they present is valid.
+1. Prompts for username
+2. User enters a username
+3. System logs user in
    
 **Alternative Courses**:
-- **Step 3**: Username already exists, or password does not match in both 'Password' and 'Confirm Password' fields
+- **Step 3**: Username is blank
   1. Pop up error
-  2. Go back to step 2.
+  2. Go back to step 2
  
-### Use Case 1.2: Login
+### Use Case 1.2: Tag Select
 - **Actors**: User
-- **Overview**: User enters information to be logged into the app
-  
-**Typical Course of Events**:
-1. Prompts for username and password field
-2. User enters a username and a password
-3. System logs user in given the information they present is valid.
-   
-**Alternative Courses**:
-- **Step 3**: Username/password do not match, either field is empty, or username does not exist in the system.
-  1. Pop up error 
-  2. Go back to step 2.
- 
-### Use Case 1.3: Tag Select
-- **Actors**: User
-- **Overview**: After signing up, user selects "tags" that personalize the meditation techniques based on selected tags.
+- **Overview**: After logging in, user selects "tags" that personalize the meditation techniques based on selected tags.
   
 **Typical Course of Events**:
 1. Lists out all tags that can be left selected or unselected

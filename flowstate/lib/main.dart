@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/classes/user.dart'; 
-import 'pages/login.dart';
+import 'pages/welcome.dart';
 
 //Main app functionality
 void main() async {
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         primaryColor: Color.fromRGBO(84, 125, 194, 1),
       ),
-      home: LoginPage(),
+      home: WelcomePage(),
     );
   }
 }

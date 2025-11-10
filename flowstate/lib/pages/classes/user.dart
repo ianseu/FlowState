@@ -8,9 +8,6 @@ class User extends HiveObject {
   @HiveField(0)
   String? username;
 
-  @HiveField(1)
-  String? hashedPassword;
-
   @HiveField(2)
   List<String>? tags;
 
@@ -21,5 +18,5 @@ class User extends HiveObject {
   String? lastLogin;
 
   //Make sure a user can never be added with incomplete info
-  User({required this.username, required this.hashedPassword, this.tags, this.streak, this.lastLogin});
+  User({required this.username, this.tags, this.streak, this.lastLogin});
 }

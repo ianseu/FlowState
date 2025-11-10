@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'techniques/binural_beats.dart';
+import 'techniques/box_breathing.dart';
+import 'techniques/guided_meditation.dart';
+import 'techniques/nature_sounds.dart';
+import 'techniques/wood_soup.dart';
 
 //Home page
 class Home extends StatefulWidget {

@@ -151,6 +151,7 @@
 
 ## This week I worked on
 
+- Removed sign up system since data is local, so system just requires an entered name to log in.
 - Created the Home Page layout along with the setup for all my meditation techniques.
 
 ## This week I learned

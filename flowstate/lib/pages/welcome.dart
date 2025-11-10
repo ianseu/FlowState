@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:bcrypt/bcrypt.dart';
-import 'sign_up.dart';
-import 'home.dart';
+import 'pick_tags.dart';
 import 'classes/user.dart';
 
-//Login page
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+//Sign up page
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _WelcomePageState extends State<WelcomePage> {
   //User input fields
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   //Hive storage 'box'
   var box = Hive.box('Users');
 
@@ -44,54 +41,47 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  //Logic to handle logging in
-  void _login() {
+  //Logic to handle sign ups
+  void _addUser() {
+
     final username = _usernameController.text.trim();
-    final password = _passwordController.text;
-    
+
     //Empty field
-    if (username.isEmpty || password.isEmpty) {
-      _showAlertDialog('Error', 'All fields are required!');
+    if (username.isEmpty) {
+      _showAlertDialog('Error', 'Please enter your name!');
       return;
     }
 
-    final user = box.get(username) as User?;
-    
-
-    //Check if username exists
-    if (user == null) {
-      _showAlertDialog('Error', 'Username not found! Sign up first!');
-      return;
-    }
-
-    List<String>? tags = [];
-    
-    //Check if password is correct
-    if (BCrypt.checkpw(password, user.hashedPassword!)) { 
-      _showAlertDialog('Success', 'Logged in!', 
-        onOkPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => Home(user: username, userTags: tags)),
-          );
-      },
+    //Prepare user to be stored in the box
+    final user = User(
+      username: username,
+      tags: [], //Tags will be added later after sign up
+      streak: 1,
+      // lastLogin: ADD LATER
     );
-  }
-    else { 
-      _showAlertDialog('Error', 'Incorrect password!');
-      return;
-    }
+    
+    //Add user to box
+    box.put(username, user);
+
+    _showAlertDialog('Success', 'Sign-up successful!',
+      onOkPressed: () {
+        Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => PickTags(user: username)),
+      );
+    },
+  );
+ 
   }
 
   //Clean up memory
   @override
   void dispose() {
     _usernameController.dispose();
-    _passwordController.dispose();
     super.dispose();
   }
 
-  //UI 
+  //UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,9 +98,8 @@ class _LoginPageState extends State<LoginPage> {
               height: 150,
             ),
 
-
             Text(
-              'Welcome Back!',
+              'Welcome!',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -151,45 +140,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            
             SizedBox(height: 10),
 
-            //Password Input
-            SizedBox(
-              width: 300,
-              child: TextField(
-                controller: _passwordController,
-                cursorColor: Color.fromRGBO(84, 125, 194, 1),
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock, color: Color.fromRGBO(84, 125, 194, 1)),
-                  labelText: 'Password',
-                  labelStyle: TextStyle(color: Color.fromRGBO(84, 125, 194, 1)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(500.0),
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
-                    )
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(500.0),
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
-                    )
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(500.0),
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
-                      width: 2.0,
-                    )
-                  ),
-                ),
-                obscureText: true,
-              ),
-            ),
-            SizedBox(height: 10),
-
-            //Login Button
+            //Sign up Button
             SizedBox(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -199,32 +152,13 @@ class _LoginPageState extends State<LoginPage> {
                     side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1)),
                   ),
                 ),
-                onPressed: _login,
+                onPressed: _addUser,
                 child: Text(
-                'Login',
-                style: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1),
+                  'Continue',
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1),
                   ),
                 ),
-              ),
-            ),
-            SizedBox(height: 40),
-
-            Text('Don\'t have an account?'),
-            //Sign up Text Button
-            TextButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
-              },
-              child: Text(
-                'Sign Up',
-                style: TextStyle(
-                  color: Color.fromRGBO(84, 125, 194, 1),
-                ),
-                  
               ),
             ),
           ],
