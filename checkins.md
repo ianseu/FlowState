@@ -131,15 +131,35 @@
 
 ## This week I worked on
 
--
+- Finished Pick Tags Page
 
 ## This week I learned
 
--
+- Learned more flutter widgets
 
 ## My successes this week were
 
--
+- Finishing the work for my first sprint
+
+## The challenges I faced this week were
+
+- Did not get a lot done due to being a little busy, but next week will be super productive.
+
+---
+
+# Week 8 Summary (11/09/2025)
+
+## This week I worked on
+
+- Created the Home Page layout along with the setup for all my meditation techniques.
+
+## This week I learned
+
+- 
+
+## My successes this week were
+
+- 
 
 ## The challenges I faced this week were
 
