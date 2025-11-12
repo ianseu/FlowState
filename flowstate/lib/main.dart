@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FlowState',
       theme: ThemeData(
-        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.workSansTextTheme(Theme.of(context).textTheme),
         splashColor: Colors.transparent,  
         highlightColor: Colors.transparent,
         primaryColor: Color.fromRGBO(84, 125, 194, 1),
