@@ -52,6 +52,11 @@ class _WelcomePageState extends State<WelcomePage> {
       return;
     }
 
+    if(username.length > 12) {
+      _showAlertDialog('Error', 'Please enter a name less than 12 characters!');
+      return;
+    }
+
     //Prepare user to be stored in the box
     final user = User(
       username: username,
@@ -106,7 +111,14 @@ class _WelcomePageState extends State<WelcomePage> {
                 color: Color.fromRGBO(84, 125, 194, 1)
               ),
             ),
-            SizedBox(height: 40),
+            Text(
+              'Enter your name to get started:',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color.fromRGBO(0, 0, 0, 1)
+              ),
+            ),
+            SizedBox(height: 20),
 
             //Username Input
             SizedBox(
@@ -116,7 +128,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 cursorColor: Color.fromRGBO(84, 125, 194, 1),
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person, color: Color.fromRGBO(84, 125, 194, 1)),
-                  labelText: 'Username',
+                  labelText: '',
                   labelStyle: TextStyle(color: Color.fromRGBO(84, 125, 194, 1)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(500.0),
@@ -140,7 +152,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
 
             //Sign up Button
             SizedBox(
@@ -151,6 +163,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     borderRadius: BorderRadius.circular(500.0),
                     side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1)),
                   ),
+                  minimumSize: Size(120, 50)
                 ),
                 onPressed: _addUser,
                 child: Text(

@@ -8,11 +8,14 @@ class Technique {
   String name;
   String description;
   String image;
+  List<String> tags;
+  
 
   Technique({
     required this.name,
     required this.description,
     required this.image,
+    required this.tags,
   });
 }
 
@@ -20,27 +23,32 @@ class Technique {
 List<Technique> allTechniques = [
   Technique(
     name: "Binaural Beats",
-    description: "Auditory illusion for deep relaxation",
+    description: "Auditory relaxation and focus",
     image: "assets/icons/binaural_beats.jpg",
+    tags: ["Auditory", "Stress", "Anxiety", "Focus", "Poor Sleep", "Under 5 Min", "Over 5 Min", "No Time Limit"]
   ),
   Technique(
     name: "Box Breathing",
-    description: "4-4-4-4 breathing technique",
+    description: "Controlled breathing exercise",
     image: "assets/icons/box_breathing.png",
+    tags: ["Visual", "Stress", "Anxiety", "Focus", "Under 5 Min", "Over 5 Min",  "No Time Limit"]
   ),
   Technique(
     name: "Guided Meditation",
-    description: "Follow along meditation sessions",
+    description: "Follow along meditation session",
     image: "assets/icons/guided_meditation.png",
+    tags: ["Auditory", "Stress", "Anxiety", "Focus", "Anger", "Sadness", "Over 5 Min", "No Time Limit"]
   ),
   Technique(
     name: "Nature Sounds",
-    description: "Calming sounds from nature",
+    description: "Calming sounds from the rainforest",
     image: "assets/icons/nature_sounds.png",
+    tags: ["Visual", "Auditory", "Stress", "Anxiety", "Under 5 Min", "Over 5 Min",  "No Time Limit"]
   ),
   Technique(
     name: "Wood Soup",
-    description: "Your custom description here",
+    description: "Visual/Audial ASMR",
     image: "assets/icons/wood_soup.png",
+    tags: ["Visual", "Auditory", "Stress", "Anxiety", "Under 5 Min", "Over 5 Min",  "No Time Limit"],
   ),
 ];

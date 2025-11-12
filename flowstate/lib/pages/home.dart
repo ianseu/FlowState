@@ -5,7 +5,8 @@ import 'classes/technique.dart';
 class Home extends StatefulWidget {
   final String user;
   final List<String> userTags;
-  const Home({super.key, required this.user, required this.userTags});
+  final int? streak;
+  const Home({super.key, required this.user, required this.userTags, required this.streak});
 
   @override
   State<Home> createState() => _HomeState();
@@ -15,10 +16,105 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [          
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 60),
+          
+          Container(
+            height: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromRGBO(84, 125, 194, 1),
+                  width: 3.0,
+                )
+              ),
+              color: Color.fromRGBO(255, 255, 255, 1),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(202, 202, 202, 1),
+                  offset: Offset(0.0, 4.2),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                SizedBox(width: 20),
+
+                Expanded(
+                  child: Text(
+                    widget.user,
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromRGBO(84, 125, 194, 1),
+                    ),
+                  ),
+                ),
+                
+                SizedBox(width: 20),
+                
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/icons/streak_fire.png',
+                          width: 30,
+                          height: 40,
+                        ),
+                        SizedBox(width: 5),
+                    
+                        Text(
+                          widget.streak.toString(),
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
+                            color: Color.fromRGBO(238, 174, 89, 1),
+                          ),
+                        ),
+                      ]
+                    ),
+
+                    SizedBox(width: 5),
+
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 77, 77, 77), 
+                        shape: CircleBorder(),
+                      ),
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.settings,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),             
+              ],
+            ),
+          ),
+
+          SizedBox(height: 30),
+
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              'Recommended for you:',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          
           SizedBox(
             height: 350,
             child: ListView.builder(
@@ -99,7 +195,7 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
-        ]),
+        ]
       ),
     );
   }

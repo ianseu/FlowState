@@ -117,7 +117,7 @@ class _PickTagsState extends State<PickTags> {
                 'Thanks for joining us, ${widget.user}!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color.fromRGBO(84, 125, 194, 1)
                 ),
@@ -158,7 +158,7 @@ class _PickTagsState extends State<PickTags> {
                   currentUser.tags = selectedTags;
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags)),
+                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak)),
                   );
               },
                 child: Text(
