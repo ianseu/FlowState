@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'classes/user.dart';
 import 'home.dart';
+import 'classes/color_manager.dart';
 
 //Picking Tags page
 class PickTags extends StatefulWidget {
@@ -42,8 +43,7 @@ class _PickTagsState extends State<PickTags> {
   ];
 
   List<String> durationsTags = [
-    "Under 5 Min",
-    "Over 5 Min",
+    "Under 10 Min",
     "No Time Limit",
   ];
 
@@ -58,7 +58,7 @@ class _PickTagsState extends State<PickTags> {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(0, 0, 0, 1)
+            color: ColorManager.textColor,
           ),
         ),
         Wrap(
@@ -69,11 +69,11 @@ class _PickTagsState extends State<PickTags> {
             for (String tag in tags)
               FilterChip(
                 showCheckmark: false,
-                backgroundColor:  Color.fromARGB(255, 255, 255, 255),
-                selectedColor: Color.fromRGBO(84, 125, 194, 1),
+                backgroundColor:  ColorManager.secondary,
+                selectedColor: ColorManager.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1))
+                  side: BorderSide(color: ColorManager.primary)
                 ),
                 label: Text(
                   tag,
@@ -81,8 +81,8 @@ class _PickTagsState extends State<PickTags> {
                     color: selectedTags.contains(tag) 
                       //? - if true
                       //: - else
-                      ? Color.fromARGB(255, 255, 255, 255)
-                      : Color.fromRGBO(84, 125, 194, 1),
+                      ? ColorManager.secondary
+                      : ColorManager.primary,
                   )
                   ),
                 selected: selectedTags.contains(tag),
@@ -106,7 +106,7 @@ class _PickTagsState extends State<PickTags> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: ColorManager.secondary,
       body: Center(
         child: SizedBox(
           width: 400,
@@ -119,7 +119,7 @@ class _PickTagsState extends State<PickTags> {
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(84, 125, 194, 1)
+                  color: ColorManager.primary
                 ),
               ),
 
@@ -129,7 +129,7 @@ class _PickTagsState extends State<PickTags> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 0, 0, 1)
+                  color: ColorManager.textColor
                 ),
               ),
               SizedBox(height: 40),
@@ -148,10 +148,10 @@ class _PickTagsState extends State<PickTags> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(84, 125, 194, 1),
+                  backgroundColor: ColorManager.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(500.0),
-                    side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1)),
+                    side: BorderSide(color: ColorManager.primary),
                   ),
                 ),
                 onPressed: () {
@@ -164,7 +164,7 @@ class _PickTagsState extends State<PickTags> {
                 child: Text(
                 'Continue',
                 style: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1),
+                  color: ColorManager.secondary,
                   ),
                 ),
               ),

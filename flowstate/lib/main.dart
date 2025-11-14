@@ -25,9 +25,6 @@ class MyApp extends StatelessWidget {
       title: 'FlowState',
       theme: ThemeData(
         textTheme: GoogleFonts.workSansTextTheme(Theme.of(context).textTheme),
-        splashColor: Colors.transparent,  
-        highlightColor: Colors.transparent,
-        primaryColor: Color.fromRGBO(84, 125, 194, 1),
       ),
       home: WelcomePage(),
     );

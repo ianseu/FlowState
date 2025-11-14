@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'pick_tags.dart';
 import 'classes/user.dart';
+import 'classes/color_manager.dart';
 
 //Sign up page
 class WelcomePage extends StatefulWidget {
@@ -90,7 +91,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: ColorManager.secondary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -108,44 +109,44 @@ class _WelcomePageState extends State<WelcomePage> {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(84, 125, 194, 1)
+                color: ColorManager.primary,
               ),
             ),
             Text(
               'Enter your name to get started:',
               style: TextStyle(
                 fontSize: 16,
-                color: Color.fromRGBO(0, 0, 0, 1)
+                color: ColorManager.textColor
               ),
             ),
             SizedBox(height: 20),
 
             //Username Input
             SizedBox(
-              width: 300,
+              width: 250,
               child: TextField(
                 controller: _usernameController,
-                cursorColor: Color.fromRGBO(84, 125, 194, 1),
+                cursorColor: ColorManager.primary,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person, color: Color.fromRGBO(84, 125, 194, 1)),
+                  prefixIcon: Icon(Icons.person_4, color: ColorManager.primary),
                   labelText: '',
-                  labelStyle: TextStyle(color: Color.fromRGBO(84, 125, 194, 1)),
+                  labelStyle: TextStyle(color: ColorManager.primary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(500.0),
                     borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
+                      color: ColorManager.primary,
                     )
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(500.0),
                     borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
+                      color: ColorManager.primary,
                     )
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(500.0),
                     borderSide: BorderSide(
-                      color: Color.fromRGBO(84, 125, 194, 1),
+                      color: ColorManager.primary,
                       width: 2.0,
                     )
                   ),
@@ -154,14 +155,14 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             SizedBox(height: 20),
 
-            //Sign up Button
+            //Continue Button
             SizedBox(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(84, 125, 194, 1),
+                  backgroundColor: ColorManager.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(500.0),
-                    side: BorderSide(color: Color.fromRGBO(84, 125, 194, 1)),
+                    side: BorderSide(color: ColorManager.primary),
                   ),
                   minimumSize: Size(120, 50)
                 ),
@@ -169,7 +170,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Text(
                   'Continue',
                   style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: ColorManager.secondary,
                   ),
                 ),
               ),

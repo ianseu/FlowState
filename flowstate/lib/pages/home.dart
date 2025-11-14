@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'classes/technique.dart';
+import 'classes/color_manager.dart';
 
 class Home extends StatefulWidget {
   final String user;
@@ -16,27 +17,33 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.lerp(
+        ColorManager.secondary,
+        ColorManager.primary,
+        0.1,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 60),
           
+          //Profile Tab
           Container(
-            height: 70,
+            padding: EdgeInsets.all(2),
+            height: 80,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border(
                 bottom: BorderSide(
-                  color: Color.fromRGBO(84, 125, 194, 1),
+                  color: ColorManager.primary,
                   width: 3.0,
                 )
               ),
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: ColorManager.secondary,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(202, 202, 202, 1),
-                  offset: Offset(0.0, 4.2),
+                  color: Color.fromRGBO(179, 178, 178, 1),
+                  offset: Offset(2, 4.2),
                   spreadRadius: 1,
                   blurRadius: 5,
                 ),
@@ -44,50 +51,80 @@ class _HomeState extends State<Home> {
             ),
             child: Row(
               children: [
-                SizedBox(width: 20),
+                //Profile Button
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorManager.primary, 
+                    shape: CircleBorder(),
+                  ),
+                  onPressed: () {},
+                  child: Icon(
+                    Icons.person_4,
+                    size: 25,
+                    color: ColorManager.secondary,
+                  ),
+                ),
 
+                //Username
                 Expanded(
                   child: Text(
                     widget.user,
                     style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(84, 125, 194, 1),
+                      color: ColorManager.primary,
                     ),
                   ),
                 ),
-                
                 SizedBox(width: 20),
                 
+                // Streak + Settings Button
                 Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/streak_fire.png',
-                          width: 30,
-                          height: 40,
+                    // Streak 
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Color.lerp(
+                          ColorManager.secondary,
+                          Color.fromRGBO(226, 149, 48, 1),
+                          0.2,
                         ),
-                        SizedBox(width: 5),
-                    
-                        Text(
-                          widget.streak.toString(),
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w900,
-                            color: Color.fromRGBO(238, 174, 89, 1),
+                        border: Border.all(
+                          color: Color.fromRGBO(238, 174, 89, 1),
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Streak Icon
+                          Image.asset(
+                            'assets/icons/streak_fire.png',
+                            width: 28,
+                            height: 36,
                           ),
-                        ),
-                      ]
+                          SizedBox(width: 6),
+                          // Streak Number
+                          Text(
+                            widget.streak.toString(),
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w900,
+                              color: Color.fromRGBO(238, 174, 89, 1),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
 
-                    SizedBox(width: 5),
-
+                    // Settings Button
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 77, 77, 77), 
+                        backgroundColor:  Color.fromARGB(255, 71, 71, 71),
                         shape: CircleBorder(),
+                       
                       ),
                       onPressed: () {},
                       child: Icon(
@@ -101,48 +138,56 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
+          SizedBox(height: 8),
 
-          SizedBox(height: 30),
-
-          Padding(
+          //Recommended Text
+          Container(
             padding: EdgeInsets.all(8),
             child: Text(
               'Recommended for you:',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w900,
+                color: ColorManager.textColor
               ),
             ),
           ),
           
+          //Horizontal Scrollable ListView of Techniques
           SizedBox(
             height: 350,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: allTechniques.length,
               itemBuilder: (context, index) {
+                //Technique Card
                 return Container(
                   width: 350,
                   height: 350,
                   margin: EdgeInsets.all(8),             
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: ColorManager.secondary,
+                    border: Border.all(
+                      width: 3,
+                      color: ColorManager.primary,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromRGBO(131, 131, 131, 1),
-                        offset: Offset(-1.0, 1.0),
-                        spreadRadius: 3,
-                        blurRadius: 4,
+                        color: Color.fromRGBO(179, 178, 178, 1),
+                        offset: Offset(4.2, 4.2),
+                        spreadRadius: 1,
+                        blurRadius: 5,
                       ),
                     ],
                   ),
                   child: Column(
                   children: [
+                    //Technique Image
                     ClipRRect(
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
+                        topLeft: Radius.circular(9),
+                        topRight: Radius.circular(9),
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       ),
@@ -153,42 +198,33 @@ class _HomeState extends State<Home> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Spacer(
-                      flex: 1
-                    ), 
-                    Container(
-                      width: 350,
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        width: 5,
-                      ),
-                        color: Color.fromRGBO(84, 125, 194, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            allTechniques[index].name.toUpperCase(),
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: 30,                              
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 0.1,
-                            ),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      //Technique Name
+                      children: [
+                        SizedBox(height: 15),
+                        Text(
+                          allTechniques[index].name.toUpperCase(),
+                          style: TextStyle(
+                            color: ColorManager.primary,
+                            fontSize: 28,                              
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.1,   
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            allTechniques[index].description,
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: 14,
-                            ),
+                          textAlign: TextAlign.center
+                        ),
+                        SizedBox(height: 8),
+                        //Technique Short Description
+                        Text(
+                          allTechniques[index].description,
+                          style: TextStyle(
+                            color: ColorManager.textColor,
+                            fontSize: 18,
                           ),
-                        ],
-                      ),
-                    ),        
+                        ),
+                      ],
+                    ),       
                   ],
                 ),
                 );
