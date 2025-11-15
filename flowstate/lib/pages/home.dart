@@ -160,73 +160,84 @@ class _HomeState extends State<Home> {
               scrollDirection: Axis.horizontal,
               itemCount: allTechniques.length,
               itemBuilder: (context, index) {
-                //Technique Card
-                return Container(
-                  width: 350,
-                  height: 350,
-                  margin: EdgeInsets.all(8),             
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: ColorManager.secondary,
-                    border: Border.all(
-                      width: 3,
-                      color: ColorManager.primary,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(179, 178, 178, 1),
-                        offset: Offset(4.2, 4.2),
-                        spreadRadius: 1,
-                        blurRadius: 5,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => allTechniques[index].destination,
                       ),
-                    ],
-                  ),
-                  child: Column(
-                  children: [
-                    //Technique Image
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(9),
-                        topRight: Radius.circular(9),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
+                    );
+                  },
+                  onLongPress: () => {},
+                  //Technique Card
+                  child: Container(
+                    width: 350,
+                    height: 350,
+                    margin: EdgeInsets.all(8),             
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: ColorManager.secondary,
+                      border: Border.all(
+                        width: 3,
+                        color: ColorManager.primary,
                       ),
-                      child: Image.asset(
-                        allTechniques[index].image,
-                        width: 350,
-                        height: 220,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      //Technique Name
-                      children: [
-                        SizedBox(height: 15),
-                        Text(
-                          allTechniques[index].name.toUpperCase(),
-                          style: TextStyle(
-                            color: ColorManager.primary,
-                            fontSize: 28,                              
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 0.1,   
-                          ),
-                          textAlign: TextAlign.center
-                        ),
-                        SizedBox(height: 8),
-                        //Technique Short Description
-                        Text(
-                          allTechniques[index].description,
-                          style: TextStyle(
-                            color: ColorManager.textColor,
-                            fontSize: 18,
-                          ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(179, 178, 178, 1),
+                          offset: Offset(4.2, 4.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
                         ),
                       ],
-                    ),       
-                  ],
-                ),
+                    ),
+                    child: Column(
+                      children: [
+                        //Technique Image
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(9),
+                            topRight: Radius.circular(9),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                          child: Image.asset(
+                            allTechniques[index].image,
+                            width: 350,
+                            height: 220,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          //Technique Name
+                          children: [
+                            SizedBox(height: 15),
+                            Text(
+                              allTechniques[index].name.toUpperCase(),
+                              style: TextStyle(
+                                color: ColorManager.primary,
+                                fontSize: 28,                              
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 0.1,   
+                              ),
+                              textAlign: TextAlign.center
+                            ),
+                            SizedBox(height: 8),
+                            //Technique Short Description
+                            Text(
+                              allTechniques[index].description,
+                              style: TextStyle(
+                                color: ColorManager.textColor,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),       
+                      ],
+                    ),
+                  ),
                 );
               },
             ),

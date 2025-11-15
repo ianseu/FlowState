@@ -49,12 +49,17 @@ class _WelcomePageState extends State<WelcomePage> {
 
     //Empty field
     if (username.isEmpty) {
-      _showAlertDialog('Error', 'Please enter your name!');
+      _showAlertDialog('ERROR', 'Please enter your name!');
       return;
     }
 
     if(username.length > 12) {
-      _showAlertDialog('Error', 'Please enter a name less than 12 characters!');
+      _showAlertDialog('ERROR', 'Please enter a name less than 12 characters!');
+      return;
+    }
+
+    if(username.length < 3) {
+      _showAlertDialog('ERROR', 'Please enter a name with at least 3 characters!');
       return;
     }
 
@@ -69,7 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
     //Add user to box
     box.put(username, user);
 
-    _showAlertDialog('Success', 'Sign-up successful!',
+    _showAlertDialog('SUCCESS', 'Logged in!',
       onOkPressed: () {
         Navigator.pushReplacement(
         context,

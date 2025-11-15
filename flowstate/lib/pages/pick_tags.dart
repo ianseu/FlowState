@@ -34,17 +34,17 @@ class _PickTagsState extends State<PickTags> {
   ];
 
   List<String> strugglesTags = [
-    "Poor Sleep",
     "Stress",
     "Anxiety",
     "Focus",
+    "Poor Sleep",
     "Anger",
     "Sadness",
   ];
 
   List<String> durationsTags = [
-    "Under 10 Min",
-    "No Time Limit",
+    "Under 5 Min",
+    "Over 5 Min",
   ];
 
 

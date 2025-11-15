@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import '../techniques/binaural_beats.dart';
 import '../techniques/box_breathing.dart';
 import '../techniques/guided_meditation.dart';
@@ -10,7 +11,8 @@ class Technique {
   String image;
   List<String> tags;          
   List<String> strugglesTags;  
-  List<String> durationsTags;  
+  List<String> durationsTags;
+  Widget destination;
 
   Technique({
     required this.name,
@@ -19,6 +21,7 @@ class Technique {
     required this.tags,
     required this.strugglesTags,
     required this.durationsTags,
+    required this.destination,
   });
 }
 
@@ -30,7 +33,8 @@ List<Technique> allTechniques = [
     image: "assets/icons/binaural_beats.jpg",
     tags: ["Auditory"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Poor Sleep"],
-    durationsTags: ["Under 10 Min", "No Time Limit"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: BinauralBeats(), 
   ),
   Technique(
     name: "Box Breathing",
@@ -38,15 +42,17 @@ List<Technique> allTechniques = [
     image: "assets/icons/box_breathing.png",
     tags: ["Visual"],
     strugglesTags: ["Stress", "Anxiety", "Focus"],
-    durationsTags: ["Under 10 Min", "No Time Limit"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: BoxBreathing(), 
   ),
   Technique(
     name: "Guided Meditation",
     description: "Follow along meditation session",
     image: "assets/icons/guided_meditation.png",
-    tags: ["Auditory"],
+    tags: ["Guided"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Anger", "Sadness"],
-    durationsTags: ["Over 10 Min", "No Time Limit"],
+    durationsTags: ["Over 5 Min"],
+    destination: GuidedMeditation(),
   ),
   Technique(
     name: "Nature Sounds",
@@ -54,7 +60,8 @@ List<Technique> allTechniques = [
     image: "assets/icons/nature_sounds.png",
     tags: ["Visual", "Auditory"],
     strugglesTags: ["Stress", "Anxiety"],
-    durationsTags: ["Under 10 Min", "No Time Limit"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: NatureSounds(), 
   ),
   Technique(
     name: "Wood Soup",
@@ -62,6 +69,7 @@ List<Technique> allTechniques = [
     image: "assets/icons/wood_soup.png",
     tags: ["Visual", "Auditory"],
     strugglesTags: ["Stress", "Anxiety"],
-    durationsTags: ["Under 10 Min", "No Time Limit"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: WoodSoup(),
   ),
 ];
