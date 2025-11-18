@@ -153,15 +153,65 @@
 
 - Removed sign up system since data is local, so system just requires an entered name to log in.
 - Created the Home Page layout along with the setup for all my meditation techniques.
+- Various other small changes
 
 ## This week I learned
 
-- 
+- Learning more about widgets and packages in Flutter
 
 ## My successes this week were
 
-- 
+- Getting a lot done this week
 
 ## The challenges I faced this week were
 
--
+- Staying up too late building the app and walking to class like a zombie
+
+---
+
+# Week 9 Summary (11/16/2025)
+
+## This week I worked on
+
+- Fixed up home page
+- Implemented streak system
+- Implemented video embeds for each meditation technique
+- Flow AI
+
+## This week I learned
+
+- Learning more about widgets and packages in Flutter
+
+## My successes this week were
+
+- Getting almost 80-90% of the way done I would say
+
+## The challenges I faced this week were
+
+- Not a lot of challenges, was very productive, one week left to go.
+
+---
+
+# Week 10 Summary (11/23/2025)
+
+## This week I worked on
+
+- Notification system
+- Slideshow
+- Final paper for project
+
+## This week I learned
+
+- Building an app and doing UI design for it is a very steep learning curve
+
+## My successes this week were
+
+- Finishing the project
+
+## The challenges I faced this week were
+
+- Had to crank out a ton of work while being home for Thanksgiving
+
+# Week 11 Summary (11/30/2025)
+
+- Giving my presentation tomorrow, 12/1 at 4:00PM

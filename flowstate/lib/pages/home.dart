@@ -113,11 +113,11 @@ class _HomeState extends State<Home> {
                         decoration: BoxDecoration(
                           color: Color.lerp(
                             ColorManager.secondary,
-                            Color.fromRGBO(255, 168, 55, 1),
+                            ColorManager.streakColor,
                             0.2,
                           ),
                           border: Border.all(
-                            color: Color.fromRGBO(255, 168, 55, 1),
+                            color: ColorManager.streakColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
                               style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w900,
-                                color: Color.fromRGBO(255, 168, 55, 1),
+                                color: ColorManager.streakColor,
                               ),
                             ),
                           ],
@@ -155,14 +155,12 @@ class _HomeState extends State<Home> {
       
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Container(
-              child: Text(
-                'Recommended:',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
-                  color: ColorManager.textColor
-                ),
+            child: Text(
+              'Recommended:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+                color: ColorManager.textColor
               ),
             ),
           ),
