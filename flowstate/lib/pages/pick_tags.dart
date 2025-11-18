@@ -156,6 +156,7 @@ class _PickTagsState extends State<PickTags> {
                 ),
                 onPressed: () {
                   currentUser.tags = selectedTags;
+                  currentUser.save();
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin)),

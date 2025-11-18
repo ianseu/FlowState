@@ -12,6 +12,7 @@ dependencies:
   google_fonts: ^6.1.0
   cupertino_icons: ^1.0.8
   icons_plus: ^4.0.0
+  lucide_icons: ^0.257.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.18.1

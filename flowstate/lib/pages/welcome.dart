@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:intl/intl.dart';
 import 'pick_tags.dart';
 import 'classes/user.dart';
 import 'classes/color_manager.dart';

@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FlowState',
       theme: ThemeData(
-        textTheme: GoogleFonts.workSansTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
       ),
       home: _loadUser(),
     );
