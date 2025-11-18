@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'pick_tags.dart';
 import 'classes/user.dart';
 import 'classes/color_manager.dart';
@@ -34,9 +35,30 @@ class _WelcomePageState extends State<WelcomePage> {
                   onOkPressed(); 
                 }
               },
-              child: Text('OK'),
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: ColorManager.secondary
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
+          backgroundColor: ColorManager.primary,
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), 
+            width: 1,
+          ),
+        ),
+          titleTextStyle: TextStyle(
+            color: ColorManager.secondary,
+            fontWeight: FontWeight.bold,
+            fontSize: 32
+
+          ),
+          contentTextStyle: TextStyle(color: ColorManager.secondary),
         );
       },
     );
@@ -66,9 +88,9 @@ class _WelcomePageState extends State<WelcomePage> {
     //Prepare user to be stored in the box
     final user = User(
       username: username,
-      tags: [], //Tags will be added later after sign up
+      tags: [],
       streak: 1,
-      // lastLogin: ADD LATER
+      lastLogin: DateTime.now(),
     );
     
     //Add user to box

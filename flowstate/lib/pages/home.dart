@@ -7,7 +7,8 @@ class Home extends StatefulWidget {
   final String user;
   final List<String> userTags;
   final int? streak;
-  const Home({super.key, required this.user, required this.userTags, required this.streak});
+  final DateTime? userLastLogin;
+  const Home({super.key, required this.user, required this.userTags, required this.streak, required this.userLastLogin});
 
   @override
   State<Home> createState() => _HomeState();
@@ -87,11 +88,11 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                         color: Color.lerp(
                           ColorManager.secondary,
-                          Color.fromRGBO(226, 149, 48, 1),
+                          Color.fromRGBO(255, 168, 55, 1),
                           0.2,
                         ),
                         border: Border.all(
-                          color: Color.fromRGBO(238, 174, 89, 1),
+                          color: Color.fromRGBO(255, 168, 55, 1),
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(20),
@@ -112,7 +113,7 @@ class _HomeState extends State<Home> {
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.w900,
-                              color: Color.fromRGBO(238, 174, 89, 1),
+                              color: Color.fromRGBO(255, 168, 55, 1),
                             ),
                           ),
                         ],
@@ -122,7 +123,7 @@ class _HomeState extends State<Home> {
                     // Settings Button
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:  Color.fromARGB(255, 71, 71, 71),
+                        backgroundColor:  Color.fromARGB(255, 90, 90, 90),
                         shape: CircleBorder(),
                        
                       ),

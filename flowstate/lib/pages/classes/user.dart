@@ -15,7 +15,7 @@ class User extends HiveObject {
   int? streak;
 
   @HiveField(4)
-  String? lastLogin;
+  DateTime? lastLogin;
 
   //Make sure a user can never be added with incomplete info
   User({required this.username, this.tags, this.streak, this.lastLogin});

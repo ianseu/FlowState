@@ -20,7 +20,7 @@ class UserAdapter extends TypeAdapter<User> {
       username: fields[0] as String?,
       tags: (fields[2] as List?)?.cast<String>(),
       streak: fields[3] as int?,
-      lastLogin: fields[4] as String?,
+      lastLogin: fields[4] as DateTime?,
     );
   }
 
