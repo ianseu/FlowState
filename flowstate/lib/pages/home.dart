@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   }
 
   //default: Meditation View
-  int currentView = 1;
+  int currentView = 0;
 
   bool showAllTechniques = false;
 
@@ -28,11 +28,6 @@ class _HomeState extends State<Home> {
     setState(() {
       currentView = index;
     });
-  }
-
-  //Profile View
-  Widget _profileView() {
-    return Center(child: Text('Profile'),);
   }
 
   //Flow AI View
@@ -308,7 +303,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     final List<Widget> views = [
-      _profileView(),
       _meditationView(),
       _flowAIView(),
     ];
@@ -327,10 +321,6 @@ class _HomeState extends State<Home> {
         selectedItemColor: ColorManager.primary,
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_4),
-            label: 'Profile',
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.spa),
             label: 'Meditation',

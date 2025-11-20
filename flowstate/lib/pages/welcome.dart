@@ -179,7 +179,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
 
             //Continue Button
             SizedBox(

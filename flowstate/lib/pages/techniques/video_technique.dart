@@ -12,19 +12,19 @@ class VideoTechnique extends StatefulWidget {
 }
 
 class _VideoTechniqueState extends State<VideoTechnique> {
-  late VideoPlayerController _videoPlayerController;
+  VideoPlayerController? _videoPlayerController;
   ChewieController? _chewieController;
 
-
   @override
-  void initState() {
+  void initState(){
     super.initState();
     _videoPlayerController = VideoPlayerController.network(widget.videoURL);
-    _videoPlayerController.initialize().then((_) {
+    _videoPlayerController?.initialize().then((_) {
       _chewieController = ChewieController(
-        videoPlayerController: _videoPlayerController,
+        videoPlayerController: _videoPlayerController!,
         autoPlay: true,
         looping: true,
+        aspectRatio: 16/9,
         allowedScreenSleep: false,
         materialProgressColors: ChewieProgressColors(
           playedColor: ColorManager.primary,
@@ -36,7 +36,7 @@ class _VideoTechniqueState extends State<VideoTechnique> {
       setState(() {});
     });
   }
-
+  
   Widget _checkChewieController() {
     if (_chewieController != null) {
       return Chewie(
@@ -51,7 +51,7 @@ class _VideoTechniqueState extends State<VideoTechnique> {
   @override
   void dispose() {
     _chewieController?.dispose();
-    _videoPlayerController.dispose();
+    _videoPlayerController?.dispose();
     super.dispose();
   }
 
@@ -60,9 +60,18 @@ class _VideoTechniqueState extends State<VideoTechnique> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        title: Text(
+          "Back",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold
+          )
+          ),
         backgroundColor: Colors.black,
         iconTheme: IconThemeData(
           color: Colors.white,
+          size: 40
         ),
       ),
       body: Center(

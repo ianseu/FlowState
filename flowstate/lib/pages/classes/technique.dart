@@ -27,11 +27,11 @@ List<Technique> allTechniques = [
   Technique(
     name: "Binaural Beats",
     description: "Intense auditory experience",
-    image: "assets/icons/binaural_beats.jpg",
+    image: "assets/icons/binaural_beats.png",
     tags: ["Auditory"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Poor Sleep"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: VideoTechnique(videoURL: ""),
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/binaural_beats.mp4"),
   ),
   Technique(
     name: "Box Breathing",
@@ -49,16 +49,16 @@ List<Technique> allTechniques = [
     tags: ["Guided"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Anger", "Sadness"],
     durationsTags: ["Over 5 Min"],
-    destination: VideoTechnique(videoURL: ""),
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/guided_meditation.mp4"),
   ),
   Technique(
     name: "Nature Sounds",
     description: "Calming sounds from the rainforest",
     image: "assets/icons/nature_sounds.png",
-    tags: ["Visual", "Auditory"],
+    tags: ["Auditory"],
     strugglesTags: ["Stress", "Anxiety"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: VideoTechnique(videoURL: ""),
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/nature_sounds.mp4"),
   ),
   Technique(
     name: "Wood Soup",
