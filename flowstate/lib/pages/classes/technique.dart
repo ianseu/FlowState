@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../techniques/binaural_beats.dart';
 import '../techniques/box_breathing.dart';
-import '../techniques/guided_meditation.dart';
-import '../techniques/nature_sounds.dart';
-import '../techniques/wood_soup.dart';
+import '../techniques/video_technique.dart';
 
 class Technique {
   String name;
@@ -34,7 +31,7 @@ List<Technique> allTechniques = [
     tags: ["Auditory"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Poor Sleep"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: BinauralBeats(), 
+    destination: VideoTechnique(videoURL: ""),
   ),
   Technique(
     name: "Box Breathing",
@@ -52,7 +49,7 @@ List<Technique> allTechniques = [
     tags: ["Guided"],
     strugglesTags: ["Stress", "Anxiety", "Focus", "Anger", "Sadness"],
     durationsTags: ["Over 5 Min"],
-    destination: GuidedMeditation(),
+    destination: VideoTechnique(videoURL: ""),
   ),
   Technique(
     name: "Nature Sounds",
@@ -61,7 +58,7 @@ List<Technique> allTechniques = [
     tags: ["Visual", "Auditory"],
     strugglesTags: ["Stress", "Anxiety"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: NatureSounds(), 
+    destination: VideoTechnique(videoURL: ""),
   ),
   Technique(
     name: "Wood Soup",
@@ -70,6 +67,6 @@ List<Technique> allTechniques = [
     tags: ["Visual", "Auditory"],
     strugglesTags: ["Stress", "Anxiety"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: WoodSoup(),
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/wood_soup_hq.mp4"),
   ),
 ];
