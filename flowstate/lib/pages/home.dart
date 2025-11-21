@@ -7,13 +7,18 @@ class Home extends StatefulWidget {
   final List<String> userTags;
   final int? streak;
   final DateTime? userLastLogin;
-  const Home({super.key, required this.user, required this.userTags, required this.streak, required this.userLastLogin});
+  
+  const Home({super.key, required this.user, required this.userTags, required this.streak, required this.userLastLogin,});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
+  List<Technique> finalTechniques = [];
+  List<Technique> savedFinalTechniques = [];
+  String showingAllText = "";
 
   Set<String> getUserTags() {
     return widget.userTags.toSet();
@@ -30,6 +35,57 @@ class _HomeState extends State<Home> {
     });
   }
 
+  //Initialize Techniques
+  @override void initState() {
+    super.initState();
+    changeTechniques();
+  }
+
+  //Filter Techniques based on User Tags
+  void changeTechniques() {
+    List<Technique> filteredTechniques = [];
+    Set<String> userTagsSet = widget.userTags.toSet();
+
+    for (int i=0; i < allTechniques.length; i++) {
+      Technique technique = allTechniques[i];
+      bool durationTagMatch = false;
+      bool struggleTagMatch = false;
+      bool typeTagMatch = false;
+      for(var tag in technique.tags) {
+        if (userTagsSet.contains(tag)) {
+          filteredTechniques.add(technique);
+          typeTagMatch = true;
+          break;
+        }
+        
+      }
+
+      for(var tag in technique.strugglesTags) {
+        if (userTagsSet.contains(tag)) {
+          filteredTechniques.add(technique);
+          struggleTagMatch = true;
+          break;
+        }
+      }
+
+      for(var tag in technique.durationsTags) {
+        if (userTagsSet.contains(tag)) {
+          filteredTechniques.add(technique);
+          durationTagMatch = true;
+          break;
+        }
+      }
+
+      if(durationTagMatch) {
+        if(typeTagMatch) {
+          if(struggleTagMatch) {
+            finalTechniques.add(technique);
+          }
+        }
+      }
+    }
+  }
+
   //Flow AI View
   Widget _flowAIView() {
     return Center(child: Text('Flow AI'),);
@@ -37,8 +93,9 @@ class _HomeState extends State<Home> {
 
   //Meditation View
   Widget _meditationView() {
+
     return Padding(
-      padding: EdgeInsets.all(6.0),
+      padding: EdgeInsets.all(12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -46,7 +103,7 @@ class _HomeState extends State<Home> {
             
           //Profile Tab
           Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: EdgeInsets.all(12.0),
             child: Container(
               padding: EdgeInsets.all(2),
               height: 80,
@@ -149,16 +206,30 @@ class _HomeState extends State<Home> {
           SizedBox(height: 30),
       
           Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Text(
-              'Recommended:',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: ColorManager.textColor
-              ),
+            padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
+            child: Row(
+              children: [
+                Text(
+                  'Recommended:',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: ColorManager.textColor
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  showingAllText,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w900,
+                    color: ColorManager.primary
+                  ),
+                ),
+              ],
             ),
           ),
+
           SizedBox(height: 5),
 
           //Horizontal Scrollable ListView of Techniques
@@ -166,14 +237,14 @@ class _HomeState extends State<Home> {
             height: 400,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: allTechniques.length,
+              itemCount: finalTechniques.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => allTechniques[index].destination,
+                        builder: (context) => finalTechniques[index].destination,
                       ),
                     );
                   },
@@ -210,7 +281,7 @@ class _HomeState extends State<Home> {
                             bottomRight: Radius.circular(20),
                           ),
                           child: Image.asset(
-                            allTechniques[index].image,
+                            finalTechniques[index].image,
                             width: 350,
                             height: 230,
                             fit: BoxFit.cover,
@@ -224,7 +295,7 @@ class _HomeState extends State<Home> {
                             children: [
                               SizedBox(height: 45),
                               Text(
-                                allTechniques[index].name.toUpperCase(),
+                                finalTechniques[index].name.toUpperCase(),
                                 style: TextStyle(
                                   color: ColorManager.primary,
                                   fontSize: 30,                              
@@ -236,7 +307,7 @@ class _HomeState extends State<Home> {
                               SizedBox(height: 8),
                               //Technique Short Description
                               Text(
-                                allTechniques[index].description,
+                                finalTechniques[index].description,
                                 style: TextStyle(
                                   color: ColorManager.textColor,
                                   fontSize: 16,
@@ -263,6 +334,14 @@ class _HomeState extends State<Home> {
                 onChanged:(bool? value) {
                   setState(() {
                     showAllTechniques = value!;
+                    if(showAllTechniques) {
+                      showingAllText = "(showing all)";
+                      savedFinalTechniques = finalTechniques;
+                      finalTechniques = allTechniques;
+                    } else {
+                      showingAllText = "";
+                      finalTechniques = savedFinalTechniques;
+                    }
                   });
                 },
                 activeColor: ColorManager.primary,
@@ -290,8 +369,8 @@ class _HomeState extends State<Home> {
           Center(
             child: Image.asset(
               'assets/icons/app_icon_blank.png',
-              width: 120,
-              height: 120,
+              width: 150,
+              height: 150,
             ),
           )
         ]

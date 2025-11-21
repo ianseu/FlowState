@@ -5,6 +5,8 @@ import 'pages/classes/user.dart';
 import 'pages/welcome.dart';
 import 'pages/home.dart';
 
+//adb connect 127.0.0.1:7555 -> connect to MuMu emulator
+
 //Main app functionality
 void main() async {
   //Boiler code for Hive box database and Flutter framework

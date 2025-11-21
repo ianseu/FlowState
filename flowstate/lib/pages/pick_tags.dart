@@ -1,3 +1,4 @@
+import 'package:flowstate/pages/classes/technique.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'classes/user.dart';
@@ -159,7 +160,7 @@ class _PickTagsState extends State<PickTags> {
                   currentUser.save();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin)),
+                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin,)),
                   );
               },
                 child: Text(

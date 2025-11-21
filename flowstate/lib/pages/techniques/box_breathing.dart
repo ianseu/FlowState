@@ -25,8 +25,8 @@ class BoxBreathing extends StatelessWidget {
       body: Center(
         child: Image.asset(
           'assets/icons/box_breathing.gif',
-          width: 400,
-          height: 400,
+          width: 300,
+          height: 300,
           )
         ),
     );
