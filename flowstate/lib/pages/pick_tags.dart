@@ -80,8 +80,6 @@ class _PickTagsState extends State<PickTags> {
                   tag,
                   style: TextStyle(
                     color: selectedTags.contains(tag) 
-                      //? - if true
-                      //: - else
                       ? ColorManager.secondary
                       : ColorManager.primary,
                   )
@@ -160,7 +158,7 @@ class _PickTagsState extends State<PickTags> {
                   currentUser.save();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin,)),
+                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin, favoriteTechniques: currentUser.favoriteTechniques)),
                   );
               },
                 child: Text(

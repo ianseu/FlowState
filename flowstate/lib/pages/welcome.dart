@@ -90,6 +90,7 @@ class _WelcomePageState extends State<WelcomePage> {
       tags: [],
       streak: 1,
       lastLogin: DateTime.now(),
+      favoriteTechniques: [],
     );
     
     //Add user to box

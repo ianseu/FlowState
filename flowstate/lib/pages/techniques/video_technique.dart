@@ -44,7 +44,9 @@ class _VideoTechniqueState extends State<VideoTechnique> {
       );
     } 
     else {
-      return CircularProgressIndicator();
+      return CircularProgressIndicator(
+        color: Colors.white,
+      );
     }
   }
 

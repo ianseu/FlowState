@@ -176,6 +176,8 @@
 - Fixed up home page
 - Implemented streak system
 - Implemented video embeds for each meditation technique
+- Filtering techniques
+- AWS for hosting technique mp4
 - Flow AI
 
 ## This week I learned
