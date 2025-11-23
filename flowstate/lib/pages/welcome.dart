@@ -18,6 +18,12 @@ class _WelcomePageState extends State<WelcomePage> {
   //Hive storage 'box'
   var box = Hive.box('Users');
 
+  @override
+  void initState() {
+    super.initState();
+    box.clear();
+  }
+  
   //Alert response based on field entry by the user
   void _showAlertDialog(String title, String message, {VoidCallback? onOkPressed}) {
     showDialog(
@@ -87,7 +93,7 @@ class _WelcomePageState extends State<WelcomePage> {
     //Prepare user to be stored in the box
     final user = User(
       username: username,
-      tags: [],
+      tags: ["Stress", "Anxiety"],
       streak: 1,
       lastLogin: DateTime.now(),
       favoriteTechniqueNames: [],

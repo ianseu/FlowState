@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter(); 
   Hive.registerAdapter(UserAdapter());
-  // var box = 
+  var box = 
   await Hive.openBox('Users');
   // box.clear();
   runApp(const MyApp()); //Runs app

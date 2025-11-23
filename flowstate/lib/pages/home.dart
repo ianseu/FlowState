@@ -1,9 +1,11 @@
+import 'package:flowstate/pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'classes/technique.dart';
 import 'classes/color_manager.dart';
 import 'classes/favorite.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'pick_tags.dart';
+import 'notification_settings.dart';
 
 class Home extends StatefulWidget {
   final String user;
@@ -121,16 +123,89 @@ class _HomeState extends State<Home> {
     savedFinalTechniques = finalTechniques;
   }
 
+  //User Options Button
+  Widget _userButton(String text, IconData icon, Color buttonColor, VoidCallback action) {
+    return Container(
+      width: 250,
+      height: 60,
+      padding: EdgeInsets.all(6),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color.lerp(
+            ColorManager.secondary, 
+            buttonColor, 
+            0.15,
+          ),  
+        ),
+        onPressed: action,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: buttonColor,
+                size: 22
+              ),
+              SizedBox(width: 5),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: buttonColor
+                  ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   //User Options Pop Up
   void _showUserOptions() {
     showDialog(
       context: context,
+      barrierColor: Color.fromARGB(0, 0, 0, 0),
       builder: (BuildContext context) {
-        return Dialog(
-          child: Container(
-            width: 500,
-            height: 650,
-          )
+        return Stack(
+          children: [ 
+            Positioned(
+              top: 65,
+              width: 400,
+              height: 250,
+              child: Dialog(
+                child: Container(
+                  decoration: BoxDecoration(
+                  color: ColorManager.secondary,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      spreadRadius: 5,
+                      blurRadius: 5
+                    ),
+                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      _userButton('Notification Settings', Icons.notifications, Color.fromARGB(255, 230, 206, 102), () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationSettings(user: user.username)));
+                      }),
+                      _userButton('Change Tags', Icons.tag, Color.fromARGB(255, 39, 186, 255), () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PickTags(user: user.username)));
+                      }),
+                      _userButton('Delete Account', Icons.person_4, Color.fromARGB(255, 255, 115, 105), () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+                      }),
+                    ],
+                  )
+                )
+              ),
+            ),
+          ]
         );
       }
     );
@@ -302,10 +377,9 @@ class _HomeState extends State<Home> {
                   color: ColorManager.secondary,
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(179, 178, 178, 1),
-                      offset: Offset(2, 4.2),
-                      spreadRadius: 1,
-                      blurRadius: 5,
+                      color: Color.fromRGBO(0, 0, 0, 0.15),
+                      spreadRadius: 5,
+                      blurRadius: 5
                     ),
                   ],
                 ),
@@ -446,14 +520,13 @@ class _HomeState extends State<Home> {
                           width: 3,
                           color: ColorManager.primary,
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(179, 178, 178, 1),
-                            offset: Offset(4.2, 6.2),
-                            spreadRadius: 1,
-                            blurRadius: 3,
-                          ),
-                        ],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.15),
+                          spreadRadius: 5,
+                          blurRadius: 5
+                        ),
+                      ],
                       ),
                       child: Column(
                         children: [

@@ -39,8 +39,8 @@ class _PickTagsState extends State<PickTags> {
     "Anxiety",
     "Focus",
     "Poor Sleep",
-    "Anger",
     "Sadness",
+    "Anger",
   ];
 
   List<String> durationsTags = [
@@ -113,12 +113,25 @@ class _PickTagsState extends State<PickTags> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Thanks for joining us, ${widget.user}!',
+                'Hello, ${widget.user}!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: ColorManager.primary
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Divider(
+                  color: Color.lerp(
+                    ColorManager.secondary,
+                    ColorManager.primary,
+                    0.5,
+                  ),
+                  thickness: 3,
+                     
                 ),
               ),
 
@@ -126,8 +139,7 @@ class _PickTagsState extends State<PickTags> {
                 'Please select from the available tags to customize your experience:',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,                 
                   color: ColorManager.textColor
                 ),
               ),
@@ -136,8 +148,8 @@ class _PickTagsState extends State<PickTags> {
               buildTagSection("What type of meditation appeals to you?", typeTags),
               SizedBox(height: 20),
 
-              buildTagSection("Are you struggling with any of the following?", strugglesTags),
-              SizedBox(height: 10),
+              buildTagSection("What are you struggling with?", strugglesTags),
+              SizedBox(height: 20),
 
               buildTagSection("How long can you put towards meditation everyday?", durationsTags),
               SizedBox(height: 80),

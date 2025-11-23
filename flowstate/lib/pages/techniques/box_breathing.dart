@@ -14,7 +14,7 @@ class BoxBreathing extends StatelessWidget {
             color: Colors.white,
             fontSize: 24,
             fontWeight: FontWeight.bold
-          )
+            )
           ),
         backgroundColor: Color.fromARGB(255, 109, 119, 228),
         iconTheme: IconThemeData(
