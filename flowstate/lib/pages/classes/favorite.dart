@@ -16,7 +16,7 @@ class _FavoriteState extends State<Favorite> {
   var user = Hive.box('Users').getAt(0);
   
   IconData _toggleFavoriteIcon() {
-    if(user.favoriteTechniques.contains(widget.technique)) {
+    if(user.favoriteTechniqueNames.contains(widget.technique.name)) {
       return Icons.favorite;
     }
     else {
@@ -30,11 +30,11 @@ class _FavoriteState extends State<Favorite> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            if (user.favoriteTechniques.contains(widget.technique)) {
-              user.favoriteTechniques.remove(widget.technique);
+            if (user.favoriteTechniqueNames.contains(widget.technique.name)) {
+              user.favoriteTechniqueNames.remove(widget.technique.name);
             } 
             else {
-              user.favoriteTechniques.add(widget.technique);
+              user.favoriteTechniqueNames.add(widget.technique.name);
             }
             user.save();
           });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'classes/technique.dart';
 import 'classes/color_manager.dart';
 import 'classes/favorite.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 
 class Home extends StatefulWidget {
@@ -9,7 +10,7 @@ class Home extends StatefulWidget {
   final List<String> userTags;
   final int? streak;
   final DateTime? userLastLogin;
-  final List<Technique>? favoriteTechniques;
+  final List<String>? favoriteTechniques;
   
   const Home({super.key, required this.user, required this.userTags, required this.streak, required this.userLastLogin, required this.favoriteTechniques});
 
@@ -21,8 +22,11 @@ class _HomeState extends State<Home> {
 
   List<Technique> finalTechniques = [];
   List<Technique> savedFinalTechniques = [];
+  List<Technique> favoriteTechniques = [];
   
   String showingAllText = "";
+
+  var user = Hive.box('Users').getAt(0);
   
   Set<String> getUserTags() {
     return widget.userTags.toSet();
@@ -44,15 +48,39 @@ class _HomeState extends State<Home> {
   @override void initState() {
     super.initState();
     changeTechniques();
+
+    //Listens to update user information without having to reload app
+    Hive.box('Users').listenable().addListener(() {
+      updateFavoriteTechniques();
+    });
+  }
+
+  //Update User Favorite Techniques
+  void updateFavoriteTechniques() {
+    favoriteTechniques = [];
+    
+    if (user.favoriteTechniqueNames != null) {
+      for (var technique in allTechniques) {
+        if (user.favoriteTechniqueNames.contains(technique.name)) {
+          favoriteTechniques.add(technique);
+        }
+      }
+    }
   }
 
   //Filter Techniques based on User Tags
   void changeTechniques() {
     List<Technique> filteredTechniques = [];
+    
     Set<String> userTagsSet = widget.userTags.toSet();
 
     for (int i=0; i < allTechniques.length; i++) {
       Technique technique = allTechniques[i];
+
+      if(widget.favoriteTechniques!.contains(technique.name)) {
+        favoriteTechniques.add(technique);
+      }
+
       bool durationTagMatch = false;
       bool struggleTagMatch = false;
       bool typeTagMatch = false;
@@ -89,9 +117,24 @@ class _HomeState extends State<Home> {
         }
       }
     }
+
+    savedFinalTechniques = finalTechniques;
   }
 
-
+  //User Options Pop Up
+  void _showUserOptions() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            width: 500,
+            height: 650,
+          )
+        );
+      }
+    );
+  }
 
   //Pop Up Chip
   Widget _showChip(String tag) {
@@ -275,7 +318,7 @@ class _HomeState extends State<Home> {
                         shape: CircleBorder(),
                       ),
                       onPressed: () {
-                        _switchView(0);
+                        _showUserOptions();
                       },
                       child: Icon(
                         Icons.person_4,
@@ -484,7 +527,6 @@ class _HomeState extends State<Home> {
                       showFavorites = false;
                       if(showAllTechniques) {
                         showingAllText = "(showing all)";
-                        savedFinalTechniques = finalTechniques;
                         finalTechniques = allTechniques;
                       } else {
                         showingAllText = "";
@@ -524,11 +566,11 @@ class _HomeState extends State<Home> {
                       else {
                         showFavorites = true;
                       }
+                      updateFavoriteTechniques();
                       showAllTechniques = false;
                       if(showFavorites) {
                         showingAllText = "(showing favorites)";
-                        savedFinalTechniques = finalTechniques;
-                        finalTechniques = widget.favoriteTechniques!;
+                        finalTechniques = favoriteTechniques;
                       } else {
                         showingAllText = "";
                         finalTechniques = savedFinalTechniques;

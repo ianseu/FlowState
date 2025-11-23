@@ -21,7 +21,7 @@ class UserAdapter extends TypeAdapter<User> {
       tags: (fields[2] as List?)?.cast<String>(),
       streak: fields[3] as int?,
       lastLogin: fields[4] as DateTime?,
-      favoriteTechniques: (fields[5] as List?)?.cast<Technique>(),
+      favoriteTechniqueNames: (fields[5] as List?)?.cast<String>(),
     );
   }
 
@@ -38,7 +38,7 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(4)
       ..write(obj.lastLogin)
       ..writeByte(5)
-      ..write(obj.favoriteTechniques);
+      ..write(obj.favoriteTechniqueNames);
   }
 
   @override

@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       
       user.save(); 
       
-      return Home(user: user.username, userTags: user.tags, streak: user.streak, userLastLogin: user.lastLogin, favoriteTechniques: user.favoriteTechniques);
+      return Home(user: user.username, userTags: user.tags, streak: user.streak, userLastLogin: user.lastLogin, favoriteTechniques: user.favoriteTechniqueNames);
     }
   }
 

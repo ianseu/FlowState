@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'technique.dart';
 
 part 'user.g.dart'; 
 
@@ -19,8 +18,8 @@ class User extends HiveObject {
   DateTime? lastLogin;
 
   @HiveField(5)
-  List<Technique>? favoriteTechniques;
+  List<String>? favoriteTechniqueNames;
 
   //Make sure a user can never be added with incomplete info
-  User({required this.username, this.tags, this.streak, this.lastLogin, this.favoriteTechniques});
+  User({required this.username, this.tags, this.streak, this.lastLogin, this.favoriteTechniqueNames});
 }
