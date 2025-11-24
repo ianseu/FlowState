@@ -1,6 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:flutter/material.dart';
-
 part 'user.g.dart'; 
 
 //Definition of a user for the Hive database box
