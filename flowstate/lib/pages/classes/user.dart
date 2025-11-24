@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:flutter/material.dart';
 
 part 'user.g.dart'; 
 
@@ -20,6 +21,9 @@ class User extends HiveObject {
   @HiveField(5)
   List<String>? favoriteTechniqueNames;
 
+  @HiveField(6)
+  DateTime? notificationTime;
+
   //Make sure a user can never be added with incomplete info
-  User({required this.username, this.tags, this.streak, this.lastLogin, this.favoriteTechniqueNames});
+  User({required this.username, this.tags, this.streak, this.lastLogin, this.favoriteTechniqueNames, this.notificationTime});
 }

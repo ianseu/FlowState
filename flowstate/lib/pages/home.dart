@@ -34,31 +34,23 @@ class _HomeState extends State<Home> {
     return widget.userTags.toSet();
   }
 
-  //default: Meditation View
-  int currentView = 0;
-
   bool showAllTechniques = false;
   bool showFavorites = false;
 
-  void _switchView(int index) {
-    setState(() {
-      currentView = index;
-    });
-  }
 
   //Initialize Techniques
   @override void initState() {
     super.initState();
-    changeTechniques();
+    _changeTechniques();
 
     //Listens to update user information without having to reload app
     Hive.box('Users').listenable().addListener(() {
-      updateFavoriteTechniques();
+      _updateFavoriteTechniques();
     });
   }
 
   //Update User Favorite Techniques
-  void updateFavoriteTechniques() {
+  void _updateFavoriteTechniques() {
     favoriteTechniques = [];
     
     if (user.favoriteTechniqueNames != null) {
@@ -71,7 +63,7 @@ class _HomeState extends State<Home> {
   }
 
   //Filter Techniques based on User Tags
-  void changeTechniques() {
+  void _changeTechniques() {
     List<Technique> filteredTechniques = [];
     
     Set<String> userTagsSet = widget.userTags.toSet();
@@ -342,371 +334,336 @@ class _HomeState extends State<Home> {
     );
   }
 
-
-  //Flow AI View
-  Widget _flowAIView() {
-    return Center(child: Text('Flow AI'),);
-  }
-
-  //Meditation View
-  Widget _meditationView() {
-
-    return Padding(
-      padding: EdgeInsets.all(12.0),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 60),
-              
-            //Profile Tab
-            Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Container(
-                padding: EdgeInsets.all(2),
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border(
-                    bottom: BorderSide(
-                      color: ColorManager.primary,
-                      width: 3.0,
-                    )
-                  ),
-                  color: ColorManager.secondary,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.15),
-                      spreadRadius: 5,
-                      blurRadius: 5
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    //Profile Button
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorManager.primary, 
-                        shape: CircleBorder(),
-                      ),
-                      onPressed: () {
-                        _showUserOptions();
-                      },
-                      child: Icon(
-                        Icons.person_4,
-                        size: 25,
-                        color: ColorManager.secondary,
-                      ),
-                    ),
-                    
-                    //Username
-                    Expanded(
-                      child: Text(
-                        widget.user,
-                        style: TextStyle(
-                          fontSize: 42,
-                          fontWeight: FontWeight.w900,
-                          color: ColorManager.primary,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                      
-                    // Streak
-                    Row(
-                      children: [
-                        // Streak 
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: Color.lerp(
-                              ColorManager.secondary,
-                              ColorManager.streakColor,
-                              0.2,
-                            ),
-                            border: Border.all(
-                              color: ColorManager.streakColor,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              // Streak Icon
-                              Image.asset(
-                                'assets/icons/streak_fire.png',
-                                width: 28,
-                                height: 36,
-                              ),
-                              SizedBox(width: 6),
-                              // Streak Number
-                              Text(
-                                widget.streak.toString(),
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w900,
-                                  color: ColorManager.streakColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 15),         
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
-        
-            Padding(
-              padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Recommended:',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w900,
-                      color: ColorManager.textColor
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    showingAllText,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                      color: ColorManager.primary
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        
-            SizedBox(height: 5),
-        
-            //Horizontal Scrollable ListView of Techniques
-            SizedBox(
-              height: 400,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: finalTechniques.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => finalTechniques[index].destination,
-                        ),
-                      );
-                    },
-                    onLongPress: () {
-                      _showPopUpDescription(finalTechniques[index]);
-                    },
-                    //Technique Card
-                    child: Container(
-                      width: 400,
-                      margin: EdgeInsets.only(left: 6, right: 12),           
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: ColorManager.secondary,
-                        border: Border.all(
-                          width: 3,
-                          color: ColorManager.primary,
-                        ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.15),
-                          spreadRadius: 5,
-                          blurRadius: 5
-                        ),
-                      ],
-                      ),
-                      child: Column(
-                        children: [
-                          //Technique Image
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(9),
-                              topRight: Radius.circular(9),
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                            child: Image.asset(
-                              finalTechniques[index].image,
-                              width: 400,
-                              height: 250,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-        
-                          Center(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              //Technique Name
-                              children: [
-                                SizedBox(height: 20),
-                                Text(
-                                  finalTechniques[index].name.toUpperCase(),
-                                  style: TextStyle(
-                                    color: ColorManager.primary,
-                                    fontSize: 36,                              
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 0.1,   
-                                  ),
-                                  textAlign: TextAlign.center
-                                ),
-                                SizedBox(height: 8),
-                                //Technique Short Description
-                                Text(
-                                  finalTechniques[index].description,
-                                  style: TextStyle(
-                                    color: ColorManager.textColor,
-                                    fontSize: 16,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),       
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-        
-           
-            Row(
-              children: [
-                //Show All Checkbox
-                Checkbox(
-                  value: showAllTechniques,
-                  onChanged:(bool? value) {
-                    setState(() {
-                     if(showAllTechniques) {
-                        showAllTechniques = false;
-                      }
-                      else {
-                        showAllTechniques = true;
-                      }
-                      showFavorites = false;
-                      if(showAllTechniques) {
-                        showingAllText = "(showing all)";
-                        finalTechniques = allTechniques;
-                      } else {
-                        showingAllText = "";
-                        finalTechniques = savedFinalTechniques;
-                      }
-                    });
-                  },
-                  activeColor: ColorManager.primary,
-                  side: BorderSide(
-                    color: ColorManager.primary,
-                    width: 2.0,
-                  )
-                ),
-            
-                //Show All Text
-                Text(
-                  'Show all',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: ColorManager.primary
-                  ),
-                ),
-              
-              ],
-            ),
-            Row(
-              children: [
-                //Show Favorites Checkbox
-                Checkbox(
-                  value: showFavorites,
-                  onChanged:(bool? value) {
-                    setState(() {
-                      if(showFavorites) {
-                        showFavorites = false;
-                      }
-                      else {
-                        showFavorites = true;
-                      }
-                      updateFavoriteTechniques();
-                      showAllTechniques = false;
-                      if(showFavorites) {
-                        showingAllText = "(showing favorites)";
-                        finalTechniques = favoriteTechniques;
-                      } else {
-                        showingAllText = "";
-                        finalTechniques = savedFinalTechniques;
-                      }
-                    });
-                  },
-                  activeColor: ColorManager.primary,
-                  side: BorderSide(
-                    color: ColorManager.primary,
-                    width: 2.0,
-                  )
-                ),
-            
-                //Show Favorites Text
-                Text(
-                  'Show favorites',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: ColorManager.primary
-                  ),
-                ),
-              
-              ],
-            ),
-
-          ]
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-
-    final List<Widget> views = [
-      _meditationView(),
-      _flowAIView(),
-    ];
-
     return Scaffold(
       backgroundColor: Color.lerp(
         ColorManager.secondary,
         ColorManager.primary,
         0.07,
       ),
-      body: views[currentView],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentView,
-        onTap: _switchView,
-        backgroundColor: ColorManager.secondary,
-        selectedItemColor: ColorManager.primary,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.spa),
-            label: 'Meditation',
+      body: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 60),
+                
+              //Profile Tab
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Container(
+                  padding: EdgeInsets.all(2),
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: ColorManager.primary,
+                        width: 3.0,
+                      )
+                    ),
+                    color: ColorManager.secondary,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.15),
+                        spreadRadius: 5,
+                        blurRadius: 5
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      //Profile Button
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorManager.primary, 
+                          shape: CircleBorder(),
+                        ),
+                        onPressed: () {
+                          _showUserOptions();
+                        },
+                        child: Icon(
+                          Icons.person_4,
+                          size: 25,
+                          color: ColorManager.secondary,
+                        ),
+                      ),
+                      
+                      //Username
+                      Expanded(
+                        child: Text(
+                          widget.user,
+                          style: TextStyle(
+                            fontSize: 42,
+                            fontWeight: FontWeight.w900,
+                            color: ColorManager.primary,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                        
+                      // Streak
+                      Row(
+                        children: [
+                          // Streak 
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Color.lerp(
+                                ColorManager.secondary,
+                                ColorManager.streakColor,
+                                0.2,
+                              ),
+                              border: Border.all(
+                                color: ColorManager.streakColor,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                // Streak Icon
+                                Image.asset(
+                                  'assets/icons/streak_fire.png',
+                                  width: 28,
+                                  height: 36,
+                                ),
+                                SizedBox(width: 6),
+                                // Streak Number
+                                Text(
+                                  widget.streak.toString(),
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w900,
+                                    color: ColorManager.streakColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 15),         
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
+          
+              Padding(
+                padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'Recommended:',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                        color: ColorManager.textColor
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      showingAllText,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        color: ColorManager.primary
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          
+              SizedBox(height: 5),
+          
+              //Horizontal Scrollable ListView of Techniques
+              SizedBox(
+                height: 400,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: finalTechniques.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => finalTechniques[index].destination,
+                          ),
+                        );
+                      },
+                      onLongPress: () {
+                        _showPopUpDescription(finalTechniques[index]);
+                      },
+                      //Technique Card
+                      child: Container(
+                        width: 400,
+                        margin: EdgeInsets.only(left: 6, right: 12),           
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: ColorManager.secondary,
+                          border: Border.all(
+                            width: 3,
+                            color: ColorManager.primary,
+                          ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.15),
+                            spreadRadius: 5,
+                            blurRadius: 5
+                          ),
+                        ],
+                        ),
+                        child: Column(
+                          children: [
+                            //Technique Image
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(9),
+                                topRight: Radius.circular(9),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              ),
+                              child: Image.asset(
+                                finalTechniques[index].image,
+                                width: 400,
+                                height: 250,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+          
+                            Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                //Technique Name
+                                children: [
+                                  SizedBox(height: 20),
+                                  Text(
+                                    finalTechniques[index].name.toUpperCase(),
+                                    style: TextStyle(
+                                      color: ColorManager.primary,
+                                      fontSize: 36,                              
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 0.1,   
+                                    ),
+                                    textAlign: TextAlign.center
+                                  ),
+                                  SizedBox(height: 8),
+                                  //Technique Short Description
+                                  Text(
+                                    finalTechniques[index].description,
+                                    style: TextStyle(
+                                      color: ColorManager.textColor,
+                                      fontSize: 16,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),       
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 40),
+          
+            
+              Row(
+                children: [
+                  //Show All Checkbox
+                  Checkbox(
+                    value: showAllTechniques,
+                    onChanged:(bool? value) {
+                      setState(() {
+                      if(showAllTechniques) {
+                          showAllTechniques = false;
+                        }
+                        else {
+                          showAllTechniques = true;
+                        }
+                        showFavorites = false;
+                        if(showAllTechniques) {
+                          showingAllText = "(showing all)";
+                          finalTechniques = allTechniques;
+                        } else {
+                          showingAllText = "";
+                          finalTechniques = savedFinalTechniques;
+                        }
+                      });
+                    },
+                    activeColor: ColorManager.primary,
+                    side: BorderSide(
+                      color: ColorManager.primary,
+                      width: 2.0,
+                    )
+                  ),
+              
+                  //Show All Text
+                  Text(
+                    'Show all',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: ColorManager.primary
+                    ),
+                  ),
+                
+                ],
+              ),
+              Row(
+                children: [
+                  //Show Favorites Checkbox
+                  Checkbox(
+                    value: showFavorites,
+                    onChanged:(bool? value) {
+                      setState(() {
+                        if(showFavorites) {
+                          showFavorites = false;
+                        }
+                        else {
+                          showFavorites = true;
+                        }
+                        _updateFavoriteTechniques();
+                        showAllTechniques = false;
+                        if(showFavorites) {
+                          showingAllText = "(showing favorites)";
+                          finalTechniques = favoriteTechniques;
+                        } else {
+                          showingAllText = "";
+                          finalTechniques = savedFinalTechniques;
+                        }
+                      });
+                    },
+                    activeColor: ColorManager.primary,
+                    side: BorderSide(
+                      color: ColorManager.primary,
+                      width: 2.0,
+                    )
+                  ),
+              
+                  //Show Favorites Text
+                  Text(
+                    'Show favorites',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: ColorManager.primary
+                    ),
+                  ),
+                
+                ],
+              ),
+            ]
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_awesome),
-            label: 'Flow AI',
-          ),
-        ],
+        ),
       ),
     );
   }

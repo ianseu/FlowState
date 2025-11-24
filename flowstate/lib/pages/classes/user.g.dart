@@ -22,13 +22,14 @@ class UserAdapter extends TypeAdapter<User> {
       streak: fields[3] as int?,
       lastLogin: fields[4] as DateTime?,
       favoriteTechniqueNames: (fields[5] as List?)?.cast<String>(),
+      notificationTime: fields[6] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.username)
       ..writeByte(2)
@@ -38,7 +39,9 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(4)
       ..write(obj.lastLogin)
       ..writeByte(5)
-      ..write(obj.favoriteTechniqueNames);
+      ..write(obj.favoriteTechniqueNames)
+      ..writeByte(6)
+      ..write(obj.notificationTime);
   }
 
   @override

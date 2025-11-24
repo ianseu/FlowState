@@ -50,7 +50,7 @@ class _PickTagsState extends State<PickTags> {
 
 
   //Reusable UI build of a group of tags
-  Widget buildTagSection(String title, List<String> tags) {
+  Widget _buildTagSection(String title, List<String> tags) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -145,13 +145,13 @@ class _PickTagsState extends State<PickTags> {
               ),
               SizedBox(height: 40),
 
-              buildTagSection("What type of meditation appeals to you?", typeTags),
+              _buildTagSection("What type of meditation appeals to you?", typeTags),
               SizedBox(height: 20),
 
-              buildTagSection("What are you struggling with?", strugglesTags),
+              _buildTagSection("What are you struggling with?", strugglesTags),
               SizedBox(height: 20),
 
-              buildTagSection("How long can you put towards meditation everyday?", durationsTags),
+              _buildTagSection("How long can you put towards meditation everyday?", durationsTags),
               SizedBox(height: 80),
 
               SizedBox(
@@ -170,7 +170,7 @@ class _PickTagsState extends State<PickTags> {
                   currentUser.save();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin, favoriteTechniques: currentUser.favoriteTechniqueNames)),
+                    MaterialPageRoute(builder: (context) => Home(user: widget.user, userTags: selectedTags, streak: currentUser.streak, userLastLogin: currentUser.lastLogin, favoriteTechniques: currentUser.favoriteTechniqueNames, )),
                   );
               },
                 child: Text(

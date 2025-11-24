@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/classes/user.dart'; 
+import 'pages/classes/notification_manager.dart';
 import 'pages/welcome.dart';
 import 'pages/home.dart';
 
@@ -11,9 +12,11 @@ import 'pages/home.dart';
 void main() async {
   //Boiler code for Hive box database and Flutter framework
   WidgetsFlutterBinding.ensureInitialized();
+  final notificationManager = NotificationManager();
+  await notificationManager.initNotification();
   await Hive.initFlutter(); 
   Hive.registerAdapter(UserAdapter());
-  var box = 
+  // var box = 
   await Hive.openBox('Users');
   // box.clear();
   runApp(const MyApp()); //Runs app

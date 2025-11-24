@@ -93,10 +93,11 @@ class _WelcomePageState extends State<WelcomePage> {
     //Prepare user to be stored in the box
     final user = User(
       username: username,
-      tags: ["Stress", "Anxiety"],
+      tags: [],
       streak: 1,
       lastLogin: DateTime.now(),
       favoriteTechniqueNames: [],
+      notificationTime: null,
     );
     
     //Add user to box

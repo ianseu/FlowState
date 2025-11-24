@@ -67,20 +67,6 @@ Whether anxiety be a daily occurence or once in a while, or whether you have 15 
 - **Overview**: User can view their profile information and set up a meditation time everyday
 
 **Typical Course of Events**:
-1. User taps the left side of the bottom nav bar to bring up the profile view
+1. User taps the profile view button
 2. User can now view their profile, and can tap the notification setting to change it
 3. User sets a time to let the app remind them to meditate everyday
-
- ### Use Case 2.3: Flow AI
-- **Actors**: User, Flow AI LLM
-- **Overview**: User can have a conversation with the built in LLM included in the app
-
-**Typical Course of Events**:
-1. User taps the right side of the bottom nav bar to bring up the Flow AI view
-2. User can send prompts that are within reason to query the AI for information relating to meditation or professional resources
-3. Flow AI responds to the user with (hopefully) clean and correct information.
-
-**Alternative Courses**:
-- **Step 2**: User sends a bad prompt to the AI
-  1. Flow AI lets them know they cannot complete that request
-  2. Go back to step 2.
