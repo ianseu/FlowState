@@ -1,5 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'user.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:flutter_timezone/flutter_timezone.dart';
 
 class NotificationManager {
   final notifications = FlutterLocalNotificationsPlugin();
@@ -16,7 +18,12 @@ class NotificationManager {
       return;
     }
 
-    const initSettings = AndroidInitializationSettings('@mipmap/app_icon');
+    tz.initializeTimeZones();
+    final TimezoneInfo currentTimeZone = await FlutterTimezone.getLocalTimezone();
+    final String location = currentTimeZone.identifier;
+    tz.setLocalLocation(tz.getLocation(location));
+
+    const initSettings = AndroidInitializationSettings('notification_icon');
 
     const init = InitializationSettings(
       android: initSettings,
@@ -38,12 +45,40 @@ class NotificationManager {
     ));
   }
 
-  //Show Notifications
-  Future<void> showNotification({
-    int id = 0,
-    String? title,
-    String? body,
+  //Schedule Notifications
+  Future<void> scheduleNotifications({
+    int id = 1,
+    required String title,
+    required String body,
+    required int hour,
+    required int minute,
   }) async {
-    return notifications.show(id, title, body, notificationDetails(),);
+    final now = tz.TZDateTime.now(tz.local);
+
+    var scheduledDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
+
+    await notifications.zonedSchedule(
+      id, 
+      title, 
+      body, 
+      scheduledDate, 
+      notificationDetails(), 
+      uiLocalNotificationDateInterpretation: 
+        UILocalNotificationDateInterpretation.absoluteTime,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
+  }
+
+  //Cancel all notifications
+  Future<void> cancelAllNotifications() async {
+    await notifications.cancelAll();
   }
 }

@@ -5,5 +5,5 @@ class ColorManager {
   static Color secondary = Colors.white;
   static Color textColor = Colors.black;
   static Color streakColor = Color.fromRGBO(255, 168, 55, 1);
-  
+  static Color? backgroundColor = Color.lerp(ColorManager.secondary, ColorManager.primary, 0.07,);
 }

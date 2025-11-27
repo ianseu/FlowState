@@ -34,15 +34,17 @@ class _NotificationSettingsState extends State<NotificationSettings> {
       notificationTime = TimeOfDay(hour: 12, minute: 0);
     }
     hour = notificationTime.hour.toString();
-    hour = _formatHour(hour);
     minute = notificationTime.minute.toString();
-    minute = _formatMinute(minute);
   }
 
   String _formatMinute(String minute) {
     if(minute == '0') {
       return '00';
     }
+    else if(int.parse(minute) < 10) {
+      return '0' + minute.toString();
+    }
+    
     else {
       return minute;
     }
@@ -72,11 +74,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.lerp(
-        ColorManager.secondary,
-        ColorManager.primary,
-        0.07,
-      ),
+      backgroundColor: ColorManager.backgroundColor,
       appBar: AppBar(
         title: Text(
           "Back",
@@ -86,11 +84,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             fontWeight: FontWeight.bold
           )
         ),
-        backgroundColor: Color.lerp(
-          ColorManager.secondary,
-          ColorManager.primary,
-          0.07,
-        ),
+        backgroundColor: ColorManager.backgroundColor,
       ),
       body: Center(
         child: Column(
@@ -144,12 +138,29 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 TimeOfDay? pickedTime = await showTimePicker(
                   context: context,
                   initialTime: notificationTime,
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: Theme.of(context).copyWith(
+                        timePickerTheme: TimePickerThemeData(
+                          dialHandColor: ColorManager.primary,
+                          dialBackgroundColor: ColorManager.backgroundColor,
+                          dayPeriodColor: ColorManager.primary,
+                        ),
+                        colorScheme: ColorScheme.light(
+                          primary: ColorManager.primary,
+                          onPrimary: ColorManager.secondary,
+                          onSurface: ColorManager.textColor,
+                        ),
+                      ),
+                      child: child!
+                    );
+                  },
                 );
                 if (pickedTime != null) {
                   setState(() {
                     notificationTime = pickedTime;
-                    hour = _formatHour(notificationTime.hour.toString());
-                    minute = _formatMinute(notificationTime.minute.toString());
+                    hour = notificationTime.hour.toString();
+                    minute = notificationTime.minute.toString();
                   });
                 }
               },
@@ -176,6 +187,13 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   onPressed: () {
                     currentUser.notificationTime = DateTime(1, 1, 1, notificationTime.hour, notificationTime.minute,);
                     currentUser.save();
+                    NotificationManager().cancelAllNotifications();
+                    NotificationManager().scheduleNotifications(
+                      title: 'Flow State', 
+                      body: 'Mindfulness awaits! 🧘', 
+                      hour: notificationTime.hour, 
+                      minute: notificationTime.minute
+                    );
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
@@ -197,6 +215,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   onPressed: () {
                     currentUser.notificationTime = null;
                     currentUser.save();
+                    NotificationManager().cancelAllNotifications();
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(

@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'pick_tags.dart';
 import 'classes/user.dart';
 import 'classes/color_manager.dart';
+import 'classes/notification_manager.dart';
 
 //Sign up page
 class WelcomePage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _WelcomePageState extends State<WelcomePage> {
   void initState() {
     super.initState();
     box.clear();
+    NotificationManager().cancelAllNotifications();
   }
   
   //Alert response based on field entry by the user

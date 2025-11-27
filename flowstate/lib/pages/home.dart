@@ -115,6 +115,74 @@ class _HomeState extends State<Home> {
     savedFinalTechniques = finalTechniques;
   }
 
+  //User Delete Dialog
+  void _showDeleteDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [ 
+            Dialog(
+              child: Container(
+                width: 400,
+                height: 200,
+                decoration: BoxDecoration(
+                color: ColorManager.secondary,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    spreadRadius: 5,
+                    blurRadius: 5
+                  ),
+                ],
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Are you sure you want to delete your account?',
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: ColorManager.primary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),     
+                      SizedBox(height: 20,),
+
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorManager.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(500.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Yes',
+                          style: TextStyle(
+                            color: ColorManager.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ) 
+                )
+              )
+            ),
+          ]
+        );
+      }
+    );
+  }
+
   //User Options Button
   Widget _userButton(String text, IconData icon, Color buttonColor, VoidCallback action) {
     return Container(
@@ -123,11 +191,7 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.all(6),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.lerp(
-            ColorManager.secondary, 
-            buttonColor, 
-            0.15,
-          ),  
+          backgroundColor: Color.lerp(ColorManager.secondary, buttonColor, 0.25),
         ),
         onPressed: action,
         child: Center(
@@ -189,9 +253,40 @@ class _HomeState extends State<Home> {
                       _userButton('Change Tags', Icons.tag, Color.fromARGB(255, 39, 186, 255), () {
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PickTags(user: user.username)));
                       }),
-                      _userButton('Delete Account', Icons.person_4, Color.fromARGB(255, 255, 115, 105), () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomePage()));
-                      }),
+                      Container(
+                        width: 250,
+                        height: 60,
+                        padding: EdgeInsets.all(6),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.lerp(ColorManager.secondary, Color.fromARGB(255, 255, 115, 105), 0.25),
+                          ),
+                          onPressed: () {
+                            _showDeleteDialog();
+                          },
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.person_4,
+                                  color: Color.fromARGB(255, 255, 115, 105),
+                                  size: 22
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Delete Account',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color.fromARGB(255, 255, 115, 105)
+                                    ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   )
                 )
@@ -208,11 +303,7 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
       decoration: BoxDecoration(
-        color: Color.lerp(
-        ColorManager.secondary,
-        ColorManager.primary,
-        0.2,
-        ),
+        color: ColorManager.backgroundColor,
         border: Border.all(
           color: ColorManager.primary,
           width: 2,
@@ -337,11 +428,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.lerp(
-        ColorManager.secondary,
-        ColorManager.primary,
-        0.07,
-      ),
+      backgroundColor: ColorManager.backgroundColor,
       body: Padding(
         padding: EdgeInsets.all(12.0),
         child: SingleChildScrollView(
@@ -573,92 +660,97 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 20),
           
             
               Row(
                 children: [
-                  //Show All Checkbox
-                  Checkbox(
-                    value: showAllTechniques,
-                    onChanged:(bool? value) {
-                      setState(() {
-                      if(showAllTechniques) {
-                          showAllTechniques = false;
-                        }
-                        else {
-                          showAllTechniques = true;
-                        }
-                        showFavorites = false;
-                        if(showAllTechniques) {
-                          showingAllText = "(showing all)";
-                          finalTechniques = allTechniques;
-                        } else {
-                          showingAllText = "";
-                          finalTechniques = savedFinalTechniques;
-                        }
-                      });
-                    },
-                    activeColor: ColorManager.primary,
-                    side: BorderSide(
-                      color: ColorManager.primary,
-                      width: 2.0,
-                    )
+                  Row(
+                    children: [
+                      //Show All Checkbox
+                      Checkbox(
+                        value: showAllTechniques,
+                        onChanged:(bool? value) {
+                          setState(() {
+                            if(showAllTechniques) {
+                              showAllTechniques = false;
+                            }
+                            else {
+                              showAllTechniques = true;
+                            }
+                            showFavorites = false;
+                            if(showAllTechniques) {
+                              showingAllText = "(showing all)";
+                              finalTechniques = allTechniques;
+                            } 
+                            else {
+                              showingAllText = "";
+                              finalTechniques = savedFinalTechniques;
+                            }
+                          });
+                        },
+                        activeColor: ColorManager.primary,
+                        side: BorderSide(
+                          color: ColorManager.primary,
+                          width: 2.0,
+                        )
+                      ),
+                  
+                      //Show All Text
+                      Text(
+                        'Show all',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: ColorManager.primary
+                        ),
+                      ),
+                    
+                    ],
                   ),
-              
-                  //Show All Text
-                  Text(
-                    'Show all',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: ColorManager.primary
-                    ),
+                  SizedBox(width: 40),
+                  Row(
+                    children: [
+                      //Show Favorites Checkbox
+                      Checkbox(
+                        value: showFavorites,
+                        onChanged:(bool? value) {
+                          setState(() {
+                            if(showFavorites) {
+                              showFavorites = false;
+                            }
+                            else {
+                              showFavorites = true;
+                            }
+                            _updateFavoriteTechniques();
+                            showAllTechniques = false;
+                            if(showFavorites) {
+                              showingAllText = "(showing favorites)";
+                              finalTechniques = favoriteTechniques;
+                            } else {
+                              showingAllText = "";
+                              finalTechniques = savedFinalTechniques;
+                            }
+                          });
+                        },
+                        activeColor: ColorManager.primary,
+                        side: BorderSide(
+                          color: ColorManager.primary,
+                          width: 2.0,
+                        )
+                      ),
+                  
+                      //Show Favorites Text
+                      Text(
+                        'Show favorites',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: ColorManager.primary
+                        ),
+                      ),               
+                    ],
                   ),
-                
-                ],
-              ),
-              Row(
-                children: [
-                  //Show Favorites Checkbox
-                  Checkbox(
-                    value: showFavorites,
-                    onChanged:(bool? value) {
-                      setState(() {
-                        if(showFavorites) {
-                          showFavorites = false;
-                        }
-                        else {
-                          showFavorites = true;
-                        }
-                        _updateFavoriteTechniques();
-                        showAllTechniques = false;
-                        if(showFavorites) {
-                          showingAllText = "(showing favorites)";
-                          finalTechniques = favoriteTechniques;
-                        } else {
-                          showingAllText = "";
-                          finalTechniques = savedFinalTechniques;
-                        }
-                      });
-                    },
-                    activeColor: ColorManager.primary,
-                    side: BorderSide(
-                      color: ColorManager.primary,
-                      width: 2.0,
-                    )
-                  ),
-              
-                  //Show Favorites Text
-                  Text(
-                    'Show favorites',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: ColorManager.primary
-                    ),
-                  ),
-                
                 ],
               ),
             ]

@@ -18,14 +18,15 @@ class _PickTagsState extends State<PickTags> {
   //Hive storage 'box'
   var box = Hive.box('Users');
   late User currentUser;
-  //List of selected tags which will be added to user's profile
-  List<String> selectedTags = [];
-
+  
   @override
   void initState() {
     super.initState();
     currentUser = box.get(widget.user);
   }
+
+  //List of selected tags which will be added to user's profile
+  List<String> selectedTags = [];
   
   List<String> typeTags = [
     "Visual",
@@ -47,6 +48,15 @@ class _PickTagsState extends State<PickTags> {
     "Over 5 Min",
   ];
 
+  Color _tagColor(String tag) {
+    if(selectedTags.contains(tag)) {
+      return ColorManager.secondary;
+    }
+    else {
+      return ColorManager.primary;
+    }
+
+  }
 
   //Reusable UI build of a group of tags
   Widget _buildTagSection(String title, List<String> tags) {
@@ -78,9 +88,7 @@ class _PickTagsState extends State<PickTags> {
                 label: Text(
                   tag,
                   style: TextStyle(
-                    color: selectedTags.contains(tag) 
-                      ? ColorManager.secondary
-                      : ColorManager.primary,
+                    color: _tagColor(tag),
                   )
                   ),
                 selected: selectedTags.contains(tag),
