@@ -1,14 +1,20 @@
 # Software Requirements Specification: Flow State
 
+### Key
+- App Code Location: 'flowstate/lib'
+- Package Location: 'flowstate/pubspec.yaml'
+- Image Location: 'flowstate/assets/icons'
+- Video Location: Videos are apart of an AWS S3 Bucket and are fetched directly in the app code.
+
 ## Introduction
 
 ### Purpose
 
-Every single person will experience some form of anxiety or stress in their life, and around 4% of the population live everyday with a diagnosed anxiety condition. Flow State is a mobile app designed with the aim to help reduce any stress, anxiety, or other negative emotions one might encounter in their day to day lives.
+Every single person will experience some form of anxiety or stress in their life, and around 4% of the population live everyday with a diagnosed anxiety condition. Flow State is a mobile app designed with the aim to help reduce any stress, anxiety, or other negative emotions one might encounter in their day to day lives. The top 2 meditation apps have been downloaded over 100 million times, but only around half of users continue to use them after 2 weeks, and only 2-4% after one year. When downloading and trying out the top app, I found it hard find what I was looking for.
 
 ### Scope
 
-Whether anxiety be a daily occurence or once in a while, or whether you have 15 minutes to practice a guided meditation session or under a minute to lock in before a job interview, Flow State desires to have the perfect anxiety/stress combatting technique for everyone no matter who you are or how long you can put towards mindfulness.
+Whether anxiety be a daily occurence or once in a while, or whether you have 15 minutes to practice a guided meditation session or under a minute to lock in before a job interview, Flow State desires to have the perfect anxiety/stress combatting technique for everyone no matter who you are or how long you can put towards mindfulness. And as a minimalistic person, I need things to be simple, clean, and easily accessible. Searching for stress relief shouldn't add to my stress. This was the starting idea of Flow State; meditation and stress relief practices tailored to each user.
 
 ### System Features
 
@@ -139,7 +145,7 @@ Whether anxiety be a daily occurence or once in a while, or whether you have 15 
   1. User taps no and keeps their account.
   2. Continue as normal.
 
-  ### Use Case 5.1: Streak System
+### Use Case 5.1: Streak System
 - **Actors**: User
 - **Overview**: User gains a streak based on consecutive logged in days.
 
