@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../techniques/box_breathing.dart';
+import '../techniques/picture_technique.dart';
 import '../techniques/video_technique.dart';
 
 class Technique {
@@ -40,7 +40,16 @@ List<Technique> allTechniques = [
     tags: ["Visual"],
     strugglesTags: ["Stress", "Anxiety", "Focus"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
-    destination: BoxBreathing(), 
+    destination: PictureTechnique(imagePath: 'assets/icons/box_breathing.gif', themeColor: Color.fromARGB(255, 109, 119, 228), width: 300, height: 300), 
+  ),
+  Technique(
+    name: "Focus Dots",
+    description: "Visual stimulation for improved concentration",
+    image: "assets/icons/focus.png",
+    tags: ["Visual"],
+    strugglesTags: ["Focus"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: PictureTechnique(imagePath: 'assets/icons/focus_dot.gif', themeColor: Color.fromARGB(255, 0, 85, 142), width: 400, height: 500), 
   ),
   Technique(
     name: "Guided Meditation",
@@ -52,6 +61,15 @@ List<Technique> allTechniques = [
     destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/guided_meditation.mp4"),
   ),
   Technique(
+    name: "AI Keyboard Typing",
+    description: "Typing on keyboards made of unlikely materials",
+    image: "assets/icons/ai_keyboard_typing.png",
+    tags: ["Visual", "Auditory"],
+    strugglesTags: ["Stress", "Anxiety", "Poor Sleep"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/ai_keyboard_typing.mp4"),
+  ),
+  Technique(
     name: "Nature Sounds",
     description: "Calming sounds from the rainforest",
     image: "assets/icons/nature_sounds.png",
@@ -59,6 +77,24 @@ List<Technique> allTechniques = [
     strugglesTags: ["Stress", "Anxiety", "Sadness"],
     durationsTags: ["Under 5 Min", "Over 5 Min"],
     destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/nature_sounds.mp4"),
+  ),
+  Technique(
+    name: "Positive Affirmations",
+    description: "Guided self-talk session",
+    image: "assets/icons/positive_affirmations.jpg",
+    tags: ["Auditory"],
+    strugglesTags: ["Stress", "Anxiety", "Anger", "Sadness"],
+    durationsTags: ["Over 5 Min"],
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/positive_affirmations.mp4"),
+  ),
+  Technique(
+    name: "Rainfall",
+    description: "Rain sounds for relaxation",
+    image: "assets/icons/rainfall.png",
+    tags: ["Auditory"],
+    strugglesTags: ["Stress", "Anxiety", "Poor Sleep"],
+    durationsTags: ["Under 5 Min", "Over 5 Min"],
+    destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/rainfall.mp4"),
   ),
   Technique(
     name: "Wood Soup",

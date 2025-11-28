@@ -170,6 +170,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   borderRadius: BorderRadius.circular(500.0),
                   side: BorderSide(color: ColorManager.primary),
                 ),
+                fixedSize: Size(300, 50),
               ),
               child: Text(
                 'Select Time',
@@ -178,7 +179,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 50),
             
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -201,6 +202,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(500.0),
                     ),
+                    fixedSize: Size(100, 50),
                   ),
                   child: Text(
                     'Save',
@@ -223,11 +225,13 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(500.0),
                     ),
+                    fixedSize: Size(180, 50),
                   ),
                   child: Text(
                     'Disable Notifications',
                     style: TextStyle(
                       color: ColorManager.secondary,
+                      fontSize: 13
                     ),
                   ),
                 ),

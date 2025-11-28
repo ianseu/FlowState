@@ -539,7 +539,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 70),
           
               Padding(
                 padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
@@ -634,7 +634,7 @@ class _HomeState extends State<Home> {
                                     finalTechniques[index].name.toUpperCase(),
                                     style: TextStyle(
                                       color: ColorManager.primary,
-                                      fontSize: 36,                              
+                                      fontSize: 30,                              
                                       fontWeight: FontWeight.w900,
                                       letterSpacing: 0.1,   
                                     ),
