@@ -82,7 +82,7 @@ List<Technique> allTechniques = [
     name: "Positive Affirmations",
     description: "Guided self-talk session",
     image: "assets/icons/positive_affirmations.jpg",
-    tags: ["Auditory"],
+    tags: ["Guided"],
     strugglesTags: ["Stress", "Anxiety", "Anger", "Sadness"],
     durationsTags: ["Over 5 Min"],
     destination: VideoTechnique(videoURL: "https://flow-state-2025.s3.us-east-2.amazonaws.com/positive_affirmations.mp4"),

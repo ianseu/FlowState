@@ -178,7 +178,6 @@
 - Implemented video embeds for each meditation technique
 - Filtering techniques
 - AWS for hosting technique mp4
-- Flow AI
 
 ## This week I learned
 
@@ -199,6 +198,7 @@
 ## This week I worked on
 
 - Notification system
+- Favoriting system
 - Slideshow
 - Final paper for project
 
@@ -216,4 +216,4 @@
 
 # Week 11 Summary (11/30/2025)
 
-- Giving my presentation tomorrow, 12/1 at 4:00PM
+- Giving my presentation 12/1 at 4:00PM

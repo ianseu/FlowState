@@ -623,6 +623,7 @@ class _HomeState extends State<Home> {
                                 fit: BoxFit.cover,
                               ),
                             ),
+                            SizedBox(height: 10),
           
                             Center(
                               child: Column(
@@ -660,7 +661,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
           
             
               Row(
