@@ -1,9 +1,9 @@
 # Software Requirements Specification: Flow State
 
 ### Key
-- App Code Location: 'flowstate/lib'
-- Package Location: 'flowstate/pubspec.yaml'
-- Image Location: 'flowstate/assets/icons'
+- App Code Location: `flowstate/lib`
+- Package Location: `flowstate/pubspec.yaml`
+- Image Location: `flowstate/assets/icons`
 - Video Location: Videos are apart of an AWS S3 Bucket and are fetched directly in the app code.
 
 ## Introduction
